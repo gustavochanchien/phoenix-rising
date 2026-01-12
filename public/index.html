@@ -9,20 +9,16 @@
     content="Phoenix Rising RC Balloon Club – dedicated RC ballooning team with decades of hands-on experience, museum-supported education programs, RC history, STEAM projects, and sponsor-ready aerial experiences."
   />
 
-  <!-- Preconnect to speed up font/icon CDN handshakes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
-  <!-- Fonts: keep as-is but allow browser to start earlier -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Icons CSS is render-blocking; keep it but make sure it can start downloading early -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 
 <style>
   :root {
-    /* Color palette */
     --c-ink: #222222;
     --c-muted: #6b7280;
 
@@ -35,7 +31,6 @@
     --c-surface: #fff7e8;
     --c-surface-soft: #fffaf0;
 
-    /* Layout + type system */
     --container: 1320px;
     --pad-x: 24px;
     --pad-y: 28px;
@@ -49,18 +44,15 @@
     --lh-tight: 1.25;
     --measure: 68ch;
 
-    /* UI primitives */
     --border: 2px solid var(--c-ink);
     --shadow-x: 4px;
     --shadow-y: 4px;
     --shadow-color: rgba(10,10,10,0.96);
     --transition: 0.22s ease;
 
-    /* Used for scroll offset when jumping to sections */
     --nav-h: 96px;
   }
 
-  /* Base resets */
   *, *::before, *::after { box-sizing: border-box; }
   html { font-size: 16px; scroll-behavior: smooth; }
   body {
@@ -72,7 +64,6 @@
     font-size: clamp(var(--fs-min), 1rem + 0.25vw, var(--fs-base));
   }
 
-  /* Background pattern */
   body {
     background-color: var(--c-paper);
     -webkit-font-smoothing: antialiased;
@@ -110,13 +101,10 @@
   button { font: inherit; }
   a { color: inherit; }
 
-  /* Consistent small text across helper classes */
   small, .text-xs, .legal, .helper, .note { font-size: max(var(--fs-min), 0.95rem); }
 
-  /* Readability: constrain typical paragraph measure */
   .prose, .hero__lead, .join__left, .grid-2 > *:first-child { max-width: var(--measure); }
 
-  /* Typography helpers */
   .h1, .hero__title {
     font-size: clamp(30px, 4vw, 44px);
     line-height: var(--lh-tight);
@@ -151,12 +139,11 @@
     margin: 0 auto;
     padding: var(--pad-y) var(--pad-x) 70px;
     position: relative;
-    z-index: 1; /* Keep content above the background overlay */
+    z-index: 1;
   }
 
   .section { margin-top: 48px; position: relative; z-index: 1; }
 
-  /* Anchor scroll offset so section titles are not hidden under the sticky nav */
   section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
   .section__header {
@@ -175,7 +162,6 @@
     flex: 0 0 auto;
   }
 
-  /* Card surfaces */
   .card, .card--soft {
     position: relative;
     border-radius: var(--radius);
@@ -205,7 +191,6 @@
     background-size: 26px 26px, 18px 18px;
   }
 
-  /* Buttons */
   .btn {
     border-radius: 999px;
     border: var(--border);
@@ -235,7 +220,6 @@
   .btn--ghost:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
   .btn--outline:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
 
-  /* Navigation (sticky header) */
   .navwrap {
     position: sticky;
     top: 0;
@@ -291,7 +275,7 @@
   .nav__links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
 
   .nav__toggle {
-    display: none; /* enabled on mobile */
+    display: none;
     padding: 10px 12px;
     border-radius: 999px;
     border: var(--border);
@@ -305,7 +289,6 @@
     align-items: center;
   }
 
-  /* Hero */
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(260px, 2.1fr);
@@ -330,7 +313,6 @@
   .hero__right { display: flex; flex-direction: column; gap: 12px; }
   .hero__gif { border-radius: 12px; width: 100%; height: auto; }
 
-  /* Weather module */
   .weather { padding: 14px; }
   .weather, .weather * { font-size: max(14px, 0.85rem); }
   .weather__temp { font-size: clamp(16px, 1rem + 0.6vw, 20px); font-weight: 700; letter-spacing: 0.06em; }
@@ -386,7 +368,6 @@
   .metric__value { font-weight: 700; }
   .metric__subnote { margin-top: 2px; line-height: 1.4; color: var(--c-muted); text-transform: none; letter-spacing: 0; }
 
-  /* Content */
   .grid-2 {
     display: grid;
     grid-template-columns: minmax(0, 2.3fr) minmax(260px, 2fr);
@@ -399,12 +380,10 @@
   .prose ul { margin: 6px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
   .prose li { margin-bottom: 6px; }
 
-  /* Education section: full width column */
   .edu { display: grid; grid-template-columns: 1fr; gap: 22px; color: var(--c-muted); max-width: 100%; }
   .edu > div { max-width: none; }
   .edu__list { margin: 8px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
 
-  /* Section image wrappers */
   .section-media {
     border-radius: 14px;
     border: var(--border);
@@ -428,7 +407,6 @@
   .media-grid .section-media { box-shadow: 2px 2px 0 rgba(10,10,10,0.88); }
   .media-grid img { aspect-ratio: 4 / 3; }
 
-  /* Float images used inside prose blocks (desktop/tablet) */
   .float-img {
     float: right;
     width: min(320px, 42%);
@@ -440,7 +418,6 @@
     box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
   }
 
-  /* Join/CTA section */
   .join {
     display: flex;
     flex-wrap: wrap;
@@ -507,7 +484,6 @@
     border-radius: 10px;
   }
 
-  /* Responsive layout */
   @media (max-width: 900px) {
     :root { --nav-h: 118px; }
 
@@ -524,7 +500,6 @@
     .join { flex-direction: column; }
     .join__actions { margin-left: 0; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
 
-    /* Mobile nav: toggle-able menu */
     .nav__toggle { display: inline-flex; }
     .nav__links {
       position: absolute;
@@ -545,7 +520,6 @@
     .nav__links.is-open { display: flex; }
     .nav__links .btn { justify-content: space-between; width: 100%; }
 
-    /* Float images become block images on small screens */
     .float-img {
       float: none;
       display: block;
@@ -554,7 +528,6 @@
       margin: 0 0 14px;
     }
 
-    /* Mobile: make scroll media grids swipe horizontally */
     .media-grid.media-grid--scroll {
       display: flex;
       overflow-x: auto;
@@ -579,12 +552,10 @@
       border-radius: 999px;
     }
 
-    /* Non-scroll grids stack on mobile */
     .media-grid:not(.media-grid--scroll) { grid-template-columns: 1fr; }
     .media-grid:not(.media-grid--scroll) img { aspect-ratio: 16 / 10; }
   }
 
-  /* Extra-small phones */
   @media (max-width: 540px) {
     :root { --nav-h: 132px; }
     .brand__logo { width: 64px; height: 64px; }
@@ -597,7 +568,6 @@
     }
   }
 
-  /* Respect user motion preferences */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .btn { transition: none; }
@@ -612,7 +582,6 @@
       <header class="nav">
         <div class="brand">
           <div class="brand__logo">
-            <!-- Logo is above the fold: eager load + higher fetch priority -->
             <img
               src="images/phoenix.png"
               alt="Phoenix Rising logo"
@@ -638,6 +607,9 @@
           <button class="btn btn--primary" data-scroll="join" type="button">
             <span>Partner With Us</span><span>↗</span>
           </button>
+          <a class="btn btn--outline" href="https://www.facebook.com/groups/phoenixrisingballoonclub" target="_blank" rel="noopener noreferrer">
+            <span>Join our Facebook Group</span><span>↗</span>
+          </a>
         </nav>
       </header>
     </div>
@@ -666,7 +638,6 @@
 
       <div class="hero__right">
         <div class="card">
-          <!-- Above the fold: eager load + higher fetch priority -->
           <img
             src="images/launch.gif"
             alt="Phoenix Rising RC balloon launch"
@@ -750,7 +721,6 @@
       <div class="grid-2">
         <div class="prose">
           <p>
-            <!-- In-view near top of page; still lazy but decoded async. Provide intrinsic size to reduce layout shift. -->
             <img
               src="images/balloon.jpg"
               alt="Phoenix Rising RC balloon"
@@ -887,33 +857,12 @@
   </div>
 
 <script>
-  /**
-   * Performance notes (what this file does to load faster):
-   * - Adds preconnects for fonts/CDN.
-   * - Adds width/height + decoding="async" on images to reduce layout shift and unblock rendering.
-   * - Uses fetch with revalidation for weather (localStorage cache) to avoid repeated cold API hits.
-   * - Optional "warm-cache" image preloading after first paint (lazy + idle time).
-   *
-   * Important reality check:
-   * - Browsers cache images automatically based on server headers.
-   * - You cannot force true long-term caching from HTML/JS alone; you set it on the server (Cache-Control).
-   * - This script adds a small "preload into the HTTP cache" pass to make revisits smoother.
-   */
-
-  /**
-   * Compute the current sticky-nav height so scroll positioning stays correct
-   * across responsive breakpoints and future nav content changes.
-   */
   function getNavOffset() {
     const nav = document.getElementById("site-nav");
     if (!nav) return 0;
     return nav.getBoundingClientRect().height + 14;
   }
 
-  /**
-   * Smooth-scroll to a given section id, compensating for sticky navigation height.
-   * @param {string} id - The target section element id.
-   */
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -921,11 +870,6 @@
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
-  /**
-   * Delegated click handler for any element with [data-scroll].
-   * Keeps the HTML easy to extend: add data-scroll="sectionId" anywhere.
-   * Also closes the mobile nav after navigation.
-   */
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-scroll]");
     if (!btn) return;
@@ -941,12 +885,6 @@
     }
   });
 
-  /**
-   * Mobile navigation behavior:
-   * - Toggle open/close on button press
-   * - Close when clicking outside
-   * - Close on Escape and return focus to the toggle for accessibility
-   */
   (function initNav() {
     const toggle = document.getElementById("nav-toggle");
     const links = document.getElementById("nav-links");
@@ -973,16 +911,10 @@
     });
   })();
 
-  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /**
-   * Weather cache:
-   * - Store last successful response in localStorage for a short TTL.
-   * - On load: paint cached data immediately (fast), then revalidate in background.
-   */
   const WEATHER_CACHE_KEY = "phoenixRising.weather.v1";
-  const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes (revalidate frequently, but avoid cold starts)
+  const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 
   function readWeatherCache() {
     try {
@@ -1004,14 +936,9 @@
         JSON.stringify({ savedAt: Date.now(), data })
       );
     } catch {
-      // Ignore storage quota / privacy mode issues
     }
   }
 
-  /**
-   * Render weather UI from a "data" object matching Open-Meteo response shape.
-   * @param {any} data
-   */
   function renderLaunchConditions(data) {
     const tempEl = document.getElementById("weather-temp");
     const descEl = document.getElementById("weather-description");
@@ -1112,10 +1039,6 @@
     }
   }
 
-  /**
-   * Fetch latest weather from Open-Meteo.
-   * @returns {Promise<any>}
-   */
   async function fetchLaunchConditions() {
     const lat = 35.0844;
     const lon = -106.6504;
@@ -1129,18 +1052,11 @@
       "&daily=weathercode,temperature_2m_max,temperature_2m_min" +
       "&timezone=auto";
 
-    // Let the browser use its normal HTTP cache policy if available.
-    // (Open-Meteo may not cache long, but this avoids forced no-store.)
     const res = await fetch(url, { cache: "default" });
     if (!res.ok) throw new Error("Weather fetch failed");
     return await res.json();
   }
 
-  /**
-   * Load weather with "stale-while-revalidate":
-   * - If cached and not too old: paint immediately.
-   * - Always revalidate in background and update UI + cache.
-   */
   async function loadLaunchConditions() {
     const updatedLabelEl = document.getElementById("weather-updated-label");
     const descEl = document.getElementById("weather-description");
@@ -1162,7 +1078,6 @@
           updatedLabelEl.textContent = "Updating…";
         }
       } catch {
-        // If cache is corrupted or UI changed, ignore.
       }
     }
 
@@ -1171,7 +1086,6 @@
       writeWeatherCache(data);
       renderLaunchConditions(data);
     } catch (err) {
-      // If we already rendered cache, keep it. If not, show fallback.
       if (cached?.data) return;
 
       console.warn("Launch conditions fallback:", err);
@@ -1187,22 +1101,13 @@
     }
   }
 
-  /**
-   * Optional: warm the browser image cache after first paint.
-   * This does NOT replace proper server Cache-Control headers,
-   * but it can make revisits/scrolls feel snappier.
-   *
-   * It runs during idle time and uses low-priority preloads.
-   */
   function warmImageCache() {
     const urls = Array.from(document.images)
       .map((img) => img.currentSrc || img.src)
       .filter(Boolean);
 
-    // Avoid duplicate work
     const unique = Array.from(new Set(urls));
 
-    // Preload politely (do not block UI)
     unique.forEach((src) => {
       const i = new Image();
       i.decoding = "async";
@@ -1213,10 +1118,8 @@
 
   window.addEventListener("DOMContentLoaded", () => {
     loadLaunchConditions();
-    // Weather refresh (UI stays live; cached data makes this cheap)
     setInterval(loadLaunchConditions, 15 * 60 * 1000);
 
-    // Warm images only when the browser is idle
     if ("requestIdleCallback" in window) {
       requestIdleCallback(warmImageCache, { timeout: 2500 });
     } else {
