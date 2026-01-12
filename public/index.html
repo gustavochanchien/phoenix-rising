@@ -523,17 +523,25 @@
     box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
   }
 
-  /* ✅ Education & Innovation images: make them "small" sized and aligned left */
-  .edu-media {
-    max-width: 300px;         /* same size as .section-media--small */
-    margin: 0 0 14px;         /* left aligned (no auto centering) */
+  /* ✅ Education & Innovation images: left-aligned AND in same row */
+  .edu-media{
+    max-width: 640px;     /* allows both 300px tiles + gap */
+    margin: 0 0 14px;     /* left aligned */
+    justify-items: start; /* keep items hugging the left */
+    align-items: start;
   }
-  .edu-media .section-media img {
-    aspect-ratio: 4 / 3;      /* same as small images */
+  .edu-media.media-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* same row */
+  }
+  /* override the auto-centering on "small" media so it stays left */
+  .edu-media .section-media--small{
+    margin: 0;            /* no auto-centering */
+    max-width: 300px;
+    width: 100%;
+  }
+  .edu-media .section-media img{
+    aspect-ratio: 4 / 3;
     object-fit: cover;
-  }
-  .edu-media.media-grid {
-    grid-template-columns: 1fr; /* stack within the small-width container */
   }
 
   .section-media--small {
@@ -604,9 +612,10 @@
       margin: 0 0 14px;
     }
 
-    /* ✅ Education row should still be nicely sized on mobile */
-    .edu-media { max-width: 520px; } /* keep reasonable on mobile */
+    /* ✅ Education images: stack on mobile */
+    .edu-media { max-width: 520px; }
     .edu-media.media-grid { grid-template-columns: 1fr; }
+    .edu-media .section-media--small { max-width: 520px; }
   }
 
   @media (max-width: 540px) {
@@ -825,7 +834,7 @@
           </ul>
         </div>
 
-        <div class="media-grid edu-media" style="margin: 0 0 14px;">
+        <div class="media-grid edu-media">
           <div class="section-media section-media--small">
             <img src="images/telemetry.jpeg" alt="Telemetry and flight data systems" loading="lazy" />
           </div>
