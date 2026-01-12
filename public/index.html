@@ -8,11 +8,21 @@
     name="description"
     content="Phoenix Rising RC Balloon Club – dedicated RC ballooning team with decades of hands-on experience, museum-supported education programs, RC history, STEAM projects, and sponsor-ready aerial experiences."
   />
+
+  <!-- Preconnect to speed up font/icon CDN handshakes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <!-- Fonts: keep as-is but allow browser to start earlier -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Icons CSS is render-blocking; keep it but make sure it can start downloading early -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 
 <style>
   :root {
+    /* Color palette */
     --c-ink: #222222;
     --c-muted: #6b7280;
 
@@ -25,6 +35,7 @@
     --c-surface: #fff7e8;
     --c-surface-soft: #fffaf0;
 
+    /* Layout + type system */
     --container: 1320px;
     --pad-x: 24px;
     --pad-y: 28px;
@@ -38,16 +49,18 @@
     --lh-tight: 1.25;
     --measure: 68ch;
 
+    /* UI primitives */
     --border: 2px solid var(--c-ink);
     --shadow-x: 4px;
     --shadow-y: 4px;
     --shadow-color: rgba(10,10,10,0.96);
     --transition: 0.22s ease;
 
-    /* ✅ Used by JS for accurate smooth scrolling */
+    /* Used for scroll offset when jumping to sections */
     --nav-h: 96px;
   }
 
+  /* Base resets */
   *, *::before, *::after { box-sizing: border-box; }
   html { font-size: 16px; scroll-behavior: smooth; }
   body {
@@ -59,6 +72,7 @@
     font-size: clamp(var(--fs-min), 1rem + 0.25vw, var(--fs-base));
   }
 
+  /* Background pattern */
   body {
     background-color: var(--c-paper);
     -webkit-font-smoothing: antialiased;
@@ -96,10 +110,13 @@
   button { font: inherit; }
   a { color: inherit; }
 
+  /* Consistent small text across helper classes */
   small, .text-xs, .legal, .helper, .note { font-size: max(var(--fs-min), 0.95rem); }
 
+  /* Readability: constrain typical paragraph measure */
   .prose, .hero__lead, .join__left, .grid-2 > *:first-child { max-width: var(--measure); }
 
+  /* Typography helpers */
   .h1, .hero__title {
     font-size: clamp(30px, 4vw, 44px);
     line-height: var(--lh-tight);
@@ -134,11 +151,12 @@
     margin: 0 auto;
     padding: var(--pad-y) var(--pad-x) 70px;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Keep content above the background overlay */
   }
 
   .section { margin-top: 48px; position: relative; z-index: 1; }
-  /* ✅ Makes anchor / JS scrolling land correctly under sticky nav */
+
+  /* Anchor scroll offset so section titles are not hidden under the sticky nav */
   section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
   .section__header {
@@ -157,6 +175,7 @@
     flex: 0 0 auto;
   }
 
+  /* Card surfaces */
   .card, .card--soft {
     position: relative;
     border-radius: var(--radius);
@@ -186,6 +205,7 @@
     background-size: 26px 26px, 18px 18px;
   }
 
+  /* Buttons */
   .btn {
     border-radius: 999px;
     border: var(--border);
@@ -215,7 +235,7 @@
   .btn--ghost:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
   .btn--outline:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
 
-  /* NAV */
+  /* Navigation (sticky header) */
   .navwrap {
     position: sticky;
     top: 0;
@@ -256,7 +276,6 @@
   .brand__logo img { width: 100%; height: 100%; object-fit: contain; }
 
   .brand__text { display: flex; flex-direction: column; min-width: 0; }
-  /* ✅ Prevents giant heading from breaking mobile nav */
   .brand__name {
     margin: 0;
     font-size: clamp(18px, 2.1vw, 36px);
@@ -271,9 +290,8 @@
 
   .nav__links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
 
-  /* ✅ Mobile menu button */
   .nav__toggle {
-    display: none;
+    display: none; /* enabled on mobile */
     padding: 10px 12px;
     border-radius: 999px;
     border: var(--border);
@@ -287,7 +305,7 @@
     align-items: center;
   }
 
-  /* HERO */
+  /* Hero */
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(260px, 2.1fr);
@@ -310,21 +328,9 @@
   .hero__meta strong { color: var(--c-forest); }
 
   .hero__right { display: flex; flex-direction: column; gap: 12px; }
-  .hero__gif { border-radius: 12px; }
+  .hero__gif { border-radius: 12px; width: 100%; height: auto; }
 
-  .hero__statrow {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 8px;
-    font-size: max(14px, 0.85rem);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    flex-wrap: wrap;
-  }
-  .hero__statrow strong { color: var(--c-primary); }
-
-  /* WEATHER */
+  /* Weather module */
   .weather { padding: 14px; }
   .weather, .weather * { font-size: max(14px, 0.85rem); }
   .weather__temp { font-size: clamp(16px, 1rem + 0.6vw, 20px); font-weight: 700; letter-spacing: 0.06em; }
@@ -380,36 +386,61 @@
   .metric__value { font-weight: 700; }
   .metric__subnote { margin-top: 2px; line-height: 1.4; color: var(--c-muted); text-transform: none; letter-spacing: 0; }
 
-  /* CONTENT */
+  /* Content */
   .grid-2 {
     display: grid;
     grid-template-columns: minmax(0, 2.3fr) minmax(260px, 2fr);
     gap: 22px;
+    align-items: start;
   }
+  .grid-2 > * { align-self: start; }
   .prose { color: var(--c-muted); }
   .prose p { margin: 0 0 10px; }
   .prose ul { margin: 6px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
   .prose li { margin-bottom: 6px; }
 
-  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .pill {
-    padding: 7px 11px;
-    border-radius: 999px;
-    border: var(--border);
-    background: var(--c-surface);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 500;
-    font-size: max(14px, 0.85rem);
-  }
-  .highlight ul { margin-left: 18px; list-style: square; }
-
-  /* ✅ Education should fill full width */
+  /* Education section: full width column */
   .edu { display: grid; grid-template-columns: 1fr; gap: 22px; color: var(--c-muted); max-width: 100%; }
   .edu > div { max-width: none; }
-
   .edu__list { margin: 8px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
 
+  /* Section image wrappers */
+  .section-media {
+    border-radius: 14px;
+    border: var(--border);
+    background: var(--c-surface);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+    overflow: hidden;
+  }
+  .section-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 14px 0 0;
+  }
+  .media-grid .section-media { box-shadow: 2px 2px 0 rgba(10,10,10,0.88); }
+  .media-grid img { aspect-ratio: 4 / 3; }
+
+  /* Float images used inside prose blocks (desktop/tablet) */
+  .float-img {
+    float: right;
+    width: min(320px, 42%);
+    height: auto;
+    margin: 6px 0 12px 14px;
+    border-radius: 14px;
+    border: var(--border);
+    background: var(--c-surface);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+  }
+
+  /* Join/CTA section */
   .join {
     display: flex;
     flex-wrap: wrap;
@@ -476,90 +507,7 @@
     border-radius: 10px;
   }
 
-  /* --- Section images --- */
-  .section-media {
-    border-radius: 14px;
-    border: var(--border);
-    background: var(--c-surface);
-    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-    overflow: hidden;
-  }
-
-  .section-media img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin: 14px 0 0;
-  }
-
-  .media-grid .section-media {
-    box-shadow: 2px 2px 0 rgba(10,10,10,0.88);
-  }
-
-  .media-grid img {
-    aspect-ratio: 4 / 3;
-  }
-
-  .hero__gif {
-    width: 100%;
-    height: auto;
-  }
-
-  .float-img {
-    float: right;
-    width: min(320px, 42%);
-    height: auto;
-    margin: 6px 0 12px 14px;
-    border-radius: 14px;
-    border: var(--border);
-    background: var(--c-surface);
-    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-  }
-
-  /* ✅ Education & Innovation images: left-aligned AND in same row */
-  .edu-media{
-    max-width: 640px;     /* allows both 300px tiles + gap */
-    margin: 0 0 14px;     /* left aligned */
-    justify-items: start; /* keep items hugging the left */
-    align-items: start;
-  }
-  .edu-media.media-grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* same row */
-  }
-  /* override the auto-centering on "small" media so it stays left */
-  .edu-media .section-media--small{
-    margin: 0;            /* no auto-centering */
-    max-width: 300px;
-    width: 100%;
-  }
-  .edu-media .section-media img{
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-
-  .section-media--small {
-    max-width: 300px;
-    margin: 10px auto 6px;
-  }
-  .section-media--small img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-
-  /* ✅ Facebook section image: align left */
-  .join__left .section-media--small {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  /* RESPONSIVE */
+  /* Responsive layout */
   @media (max-width: 900px) {
     :root { --nav-h: 118px; }
 
@@ -575,9 +523,8 @@
 
     .join { flex-direction: column; }
     .join__actions { margin-left: 0; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
-    .join__actions .section-media--small { width: 100%; max-width: 420px; margin: 10px 0 6px; }
 
-    /* ✅ Mobile nav collapses into menu */
+    /* Mobile nav: toggle-able menu */
     .nav__toggle { display: inline-flex; }
     .nav__links {
       position: absolute;
@@ -594,36 +541,63 @@
       align-items: stretch;
       gap: 10px;
     }
-    .navwrap { position: sticky; }
     .nav { position: relative; }
     .nav__links.is-open { display: flex; }
     .nav__links .btn { justify-content: space-between; width: 100%; }
 
-    /* section images stack */
-    .media-grid { grid-template-columns: 1fr; }
-    .media-grid img { aspect-ratio: 16 / 10; }
-
-    /* ✅ Turn off float on mobile so it doesn't squeeze text */
+    /* Float images become block images on small screens */
     .float-img {
       float: none;
       display: block;
-      width: 100%;
-      max-width: 520px;
+      width: min(240px, 70%);
+      max-width: 240px;
       margin: 0 0 14px;
     }
 
-    /* ✅ Education images: stack on mobile */
-    .edu-media { max-width: 520px; }
-    .edu-media.media-grid { grid-template-columns: 1fr; }
-    .edu-media .section-media--small { max-width: 520px; }
+    /* Mobile: make scroll media grids swipe horizontally */
+    .media-grid.media-grid--scroll {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 10px;
+    }
+    .media-grid.media-grid--scroll .section-media {
+      flex: 0 0 78%;
+      max-width: 520px;
+      scroll-snap-align: start;
+    }
+    .media-grid.media-grid--scroll::-webkit-scrollbar { height: 10px; }
+    .media-grid.media-grid--scroll::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.28);
+      border-radius: 999px;
+      border: 2px solid rgba(255,247,232,0.8);
+    }
+    .media-grid.media-grid--scroll::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.08);
+      border-radius: 999px;
+    }
+
+    /* Non-scroll grids stack on mobile */
+    .media-grid:not(.media-grid--scroll) { grid-template-columns: 1fr; }
+    .media-grid:not(.media-grid--scroll) img { aspect-ratio: 16 / 10; }
   }
 
+  /* Extra-small phones */
   @media (max-width: 540px) {
     :root { --nav-h: 132px; }
     .brand__logo { width: 64px; height: 64px; }
     .metrics { grid-template-columns: 1fr; }
+
+    .float-img {
+      width: min(200px, 68%);
+      max-width: 200px;
+      margin: 0 auto 12px;
+    }
   }
 
+  /* Respect user motion preferences */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .btn { transition: none; }
@@ -638,7 +612,16 @@
       <header class="nav">
         <div class="brand">
           <div class="brand__logo">
-            <img src="images/phoenix.png" alt="Phoenix Rising logo" />
+            <!-- Logo is above the fold: eager load + higher fetch priority -->
+            <img
+              src="images/phoenix.png"
+              alt="Phoenix Rising logo"
+              width="84"
+              height="84"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
           </div>
           <div class="brand__text">
             <h1 class="brand__name">Phoenix Rising</h1>
@@ -646,13 +629,13 @@
           </div>
         </div>
 
-        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" type="button">
           <span>Menu</span>
           <span aria-hidden="true">☰</span>
         </button>
 
         <nav class="nav__links" id="nav-links">
-          <button class="btn btn--primary" data-scroll="join">
+          <button class="btn btn--primary" data-scroll="join" type="button">
             <span>Partner With Us</span><span>↗</span>
           </button>
         </nav>
@@ -672,19 +655,28 @@
         </p>
 
         <div class="hero__actions">
-          <button class="btn btn--fb" data-scroll="join">
+          <button class="btn btn--fb" data-scroll="join" type="button">
             Join our FB group & connect
           </button>
-          <button class="btn btn--ghost" data-scroll="education">
+          <button class="btn btn--ghost" data-scroll="education" type="button">
             View education programs <span>↓</span>
           </button>
         </div>
-
       </div>
 
       <div class="hero__right">
         <div class="card">
-          <img src="images/launch.gif" alt="Phoenix Rising RC balloon launch" class="hero__gif">
+          <!-- Above the fold: eager load + higher fetch priority -->
+          <img
+            src="images/launch.gif"
+            alt="Phoenix Rising RC balloon launch"
+            class="hero__gif"
+            width="900"
+            height="600"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
           <div class="hero__statrow">
             <div class="hero__meta">
               <span><strong>Decades</strong> of experience flying R/C Balloons</span>
@@ -758,7 +750,16 @@
       <div class="grid-2">
         <div class="prose">
           <p>
-            <img src="images/balloon.jpg" alt="Phoenix Rising RC balloon" loading="lazy" class="float-img" />
+            <!-- In-view near top of page; still lazy but decoded async. Provide intrinsic size to reduce layout shift. -->
+            <img
+              src="images/balloon.jpg"
+              alt="Phoenix Rising RC balloon"
+              class="float-img"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
             Phoenix Rising brings together people of all ages to marvel at the amazing physics and history behind ballooning in New Mexico as well as to enjoy and learn about the craft of R/C ballooning. Our team members have combied decades of experience flying for educational programs and demos at the Anderson Abruzzo Hot Air Balloon Museum and are always looking to innovate in the field. We follow proper safety protocol, and love to teach others about hot air balloons and let them experience them up close in a small and safe environment. We also love sharing our knowledge on R/C ballooning, how we weave our own R/C gondolas, build our own electronics and telemetry systems, and much more! We perform a lot of demos including:
           </p>
 
@@ -770,10 +771,10 @@
 
           <div class="media-grid">
             <div class="section-media">
-              <img src="images/setup.jpg" alt="RC balloon setup and prep" loading="lazy" />
+              <img src="images/setup.jpg" alt="RC balloon setup and prep" width="900" height="675" loading="lazy" decoding="async" />
             </div>
             <div class="section-media">
-              <img src="images/burner.png" alt="RC balloon burner demonstration" loading="lazy" />
+              <img src="images/burner.png" alt="RC balloon burner demonstration" width="900" height="675" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -790,7 +791,7 @@
           </ul>
 
           <div class="section-media" style="margin-top:12px;">
-            <img src="images/group.jpeg" alt="Phoenix Rising team and community" loading="lazy" />
+            <img src="images/group.jpeg" alt="Phoenix Rising team and community" width="900" height="675" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -804,6 +805,7 @@
       <div class="edu">
         <div>
           <p>
+            <img src="images/insideballoon.jpeg" alt="Inside the balloon envelope" class="float-img" width="640" height="480" loading="lazy" decoding="async" />
             To us, our R/C balloons are mobile, educational innovation platforms. We work to deliver structured experiences that blend live flight, storytelling, and hands-on STEAM lessons and interactive experiences. We love learning together and developing new systems and programs to get more people involved and in love with ballooning.
           </p>
 
@@ -832,14 +834,17 @@
               Explore the history of ballooning, from early human flight experiments to modern scientific and recreational balloons. Lessons highlight key innovations, famous flights, and how ballooning continues to influence science and exploration today.
             </li>
           </ul>
-        </div>
 
-        <div class="media-grid edu-media">
-          <div class="section-media section-media--small">
-            <img src="images/telemetry.jpeg" alt="Telemetry and flight data systems" loading="lazy" />
-          </div>
-          <div class="section-media section-media--small">
-            <img src="images/weaving.jpeg" alt="Weaving a balloon gondola" loading="lazy" />
+          <div class="media-grid media-grid--scroll" aria-label="Education photos">
+            <div class="section-media">
+              <img src="images/telemetry.jpeg" alt="Telemetry and flight data systems" width="900" height="675" loading="lazy" decoding="async" />
+            </div>
+            <div class="section-media">
+              <img src="images/weaving.jpeg" alt="Weaving a balloon gondola" width="900" height="675" loading="lazy" decoding="async" />
+            </div>
+            <div class="section-media">
+              <img src="images/ropeskevin.png" alt="Picture by Kevin Tran" width="900" height="675" loading="lazy" decoding="async" />
+            </div>
           </div>
         </div>
       </div>
@@ -860,18 +865,15 @@
             <li>Reach out to us about promoting your event or advertising with our balloon</li>
             <li>Ask about how you can help support our missions with donations</li>
           </ul>
-          <div class="section-media section-media--small">
-            <img src="images/group.jpeg" alt="Connect with Phoenix Rising community" loading="lazy" />
-          </div>
         </div>
 
         <div class="join__actions">
-          <a class="btn btn--fb" href="https://www.facebook.com/groups/phoenixrisingrc" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn--fb" href="https://www.facebook.com/groups/phoenixrisingballoonclub" target="_blank" rel="noopener noreferrer">
             <span>Visit our group & message us</span>
             <span>↗</span>
           </a>
 
-          <button class="btn btn--outline" data-scroll="education">
+          <button class="btn btn--outline" data-scroll="education" type="button">
             Explore our education programs
           </button>
         </div>
@@ -885,20 +887,45 @@
   </div>
 
 <script>
+  /**
+   * Performance notes (what this file does to load faster):
+   * - Adds preconnects for fonts/CDN.
+   * - Adds width/height + decoding="async" on images to reduce layout shift and unblock rendering.
+   * - Uses fetch with revalidation for weather (localStorage cache) to avoid repeated cold API hits.
+   * - Optional "warm-cache" image preloading after first paint (lazy + idle time).
+   *
+   * Important reality check:
+   * - Browsers cache images automatically based on server headers.
+   * - You cannot force true long-term caching from HTML/JS alone; you set it on the server (Cache-Control).
+   * - This script adds a small "preload into the HTTP cache" pass to make revisits smoother.
+   */
+
+  /**
+   * Compute the current sticky-nav height so scroll positioning stays correct
+   * across responsive breakpoints and future nav content changes.
+   */
   function getNavOffset() {
     const nav = document.getElementById("site-nav");
     if (!nav) return 0;
     return nav.getBoundingClientRect().height + 14;
   }
 
+  /**
+   * Smooth-scroll to a given section id, compensating for sticky navigation height.
+   * @param {string} id - The target section element id.
+   */
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if (!el) return;
-
     const y = window.scrollY + el.getBoundingClientRect().top - getNavOffset();
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
+  /**
+   * Delegated click handler for any element with [data-scroll].
+   * Keeps the HTML easy to extend: add data-scroll="sectionId" anywhere.
+   * Also closes the mobile nav after navigation.
+   */
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-scroll]");
     if (!btn) return;
@@ -914,6 +941,12 @@
     }
   });
 
+  /**
+   * Mobile navigation behavior:
+   * - Toggle open/close on button press
+   * - Close when clicking outside
+   * - Close on Escape and return focus to the toggle for accessibility
+   */
   (function initNav() {
     const toggle = document.getElementById("nav-toggle");
     const links = document.getElementById("nav-links");
@@ -940,12 +973,46 @@
     });
   })();
 
+  // Footer year
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  async function loadLaunchConditions() {
-    const lat = 35.0844;
-    const lon = -106.6504;
+  /**
+   * Weather cache:
+   * - Store last successful response in localStorage for a short TTL.
+   * - On load: paint cached data immediately (fast), then revalidate in background.
+   */
+  const WEATHER_CACHE_KEY = "phoenixRising.weather.v1";
+  const WEATHER_CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes (revalidate frequently, but avoid cold starts)
 
+  function readWeatherCache() {
+    try {
+      const raw = localStorage.getItem(WEATHER_CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") return null;
+      if (!parsed.savedAt || !parsed.data) return null;
+      return parsed;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeWeatherCache(data) {
+    try {
+      localStorage.setItem(
+        WEATHER_CACHE_KEY,
+        JSON.stringify({ savedAt: Date.now(), data })
+      );
+    } catch {
+      // Ignore storage quota / privacy mode issues
+    }
+  }
+
+  /**
+   * Render weather UI from a "data" object matching Open-Meteo response shape.
+   * @param {any} data
+   */
+  function renderLaunchConditions(data) {
     const tempEl = document.getElementById("weather-temp");
     const descEl = document.getElementById("weather-description");
     const timeEl = document.getElementById("weather-time");
@@ -991,73 +1058,122 @@
       return { label: "Conditions", icon: "ti ti-sun-filled" };
     }
 
-    try {
-      const url =
-        "https://api.open-meteo.com/v1/forecast" +
-        "?latitude=" + lat +
-        "&longitude=" + lon +
-        "&current_weather=true" +
-        "&hourly=relativehumidity_2m,surface_pressure,windspeed_10m,winddirection_10m" +
-        "&daily=weathercode,temperature_2m_max,temperature_2m_min" +
-        "&timezone=auto";
+    const current = data.current_weather;
+    const hourly = data.hourly;
+    const daily = data.daily;
 
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error("Weather fetch failed");
-      const data = await res.json();
+    const currentTempF = toF(current.temperature);
+    const currentCode = mapWeatherCode(current.weathercode);
+    const now = new Date(current.time);
 
-      const current = data.current_weather;
-      const hourly = data.hourly;
-      const daily = data.daily;
+    tempEl.textContent = currentTempF + "°F";
+    descEl.textContent = currentCode.label + " • Light winds";
+    timeEl.textContent = "Live " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    iconEl.className = "ti " + currentCode.icon;
+    updatedLabelEl.textContent = "Updated " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
-      const currentTempF = toF(current.temperature);
-      const currentCode = mapWeatherCode(current.weathercode);
-      const now = new Date(current.time);
+    const idx = hourly.time.indexOf(current.time);
+    const ix = idx !== -1 ? idx : 0;
 
-      tempEl.textContent = currentTempF + "°F";
-      descEl.textContent = currentCode.label + " • Light winds";
-      timeEl.textContent = "Live " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
-      iconEl.className = "ti " + currentCode.icon;
-      updatedLabelEl.textContent = "Updated " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    const gwSpeed = toMph(hourly.windspeed_10m[ix]);
+    const gwDirWord = degToCompassWord(hourly.winddirection_10m[ix]);
+    groundWindEl.textContent = gwDirWord + " " + gwSpeed + " mph";
 
-      const idx = hourly.time.indexOf(current.time);
-      const ix = idx !== -1 ? idx : 0;
+    const haIndex = Math.min(ix + 3, hourly.windspeed_10m.length - 1);
+    const haSpeed = toMph(hourly.windspeed_10m[haIndex]);
+    const haDirWord = degToCompassWord(hourly.winddirection_10m[haIndex]);
+    highAltWindEl.textContent = haDirWord + " " + haSpeed + " mph aloft";
 
-      const gwSpeed = toMph(hourly.windspeed_10m[ix]);
-      const gwDirWord = degToCompassWord(hourly.winddirection_10m[ix]);
-      groundWindEl.textContent = gwDirWord + " " + gwSpeed + " mph";
+    humidityEl.textContent = Math.round(hourly.relativehumidity_2m[ix]) + "%";
 
-      const haIndex = Math.min(ix + 3, hourly.windspeed_10m.length - 1);
-      const haSpeed = toMph(hourly.windspeed_10m[haIndex]);
-      const haDirWord = degToCompassWord(hourly.winddirection_10m[haIndex]);
-      highAltWindEl.textContent = haDirWord + " " + haSpeed + " mph aloft";
+    const hPa = hourly.surface_pressure[ix];
+    const inHg = (hPa * 0.02953).toFixed(2);
+    pressureEl.textContent = inHg + " inHg";
 
-      humidityEl.textContent = Math.round(hourly.relativehumidity_2m[ix]) + "%";
+    const T_out_K = toK(current.temperature);
+    const T_in_K = T_out_K + (DELTA_T_F - 32) * (5 / 9);
+    const p_Pa = hPaToPa(hPa);
 
-      const hPa = hourly.surface_pressure[ix];
-      const inHg = (hPa * 0.02953).toFixed(2);
-      pressureEl.textContent = inHg + " inHg";
+    const rho_out = p_Pa / (R_AIR * T_out_K);
+    const rho_in  = p_Pa / (R_AIR * T_in_K);
+    const deltaRho = Math.max(rho_out - rho_in, 0);
 
-      const T_out_K = toK(current.temperature);
-      const T_in_K = T_out_K + (DELTA_T_F - 32) * (5 / 9);
-      const p_Pa = hPaToPa(hPa);
+    const V_m3 = BALLOON_VOL_FT3 * 0.028316846592;
+    const lift_kg = deltaRho * V_m3;
+    const lift_lbf = (lift_kg * 9.80665) / 4.448221615;
 
-      const rho_out = p_Pa / (R_AIR * T_out_K);
-      const rho_in  = p_Pa / (R_AIR * T_in_K);
-      const deltaRho = Math.max(rho_out - rho_in, 0);
+    buoyancyEl.textContent = "~ " + Math.round(lift_lbf) + " lb lift";
 
-      const V_m3 = BALLOON_VOL_FT3 * 0.028316846592;
-      const lift_kg = deltaRho * V_m3;
-      const lift_lbf = lift_kg * 9.80665 / 4.448221615;
+    if (daily.temperature_2m_max?.length > 1) {
+      const tomorrowMaxF = toF(daily.temperature_2m_max[1]);
+      const tomorrowMinF = toF(daily.temperature_2m_min[1]);
+      const tCode = mapWeatherCode(daily.weathercode[1]);
+      tomorrowEl.textContent = tomorrowMinF + "–" + tomorrowMaxF + "°F • " + tCode.label;
+    }
+  }
 
-      buoyancyEl.textContent = "~ " + Math.round(lift_lbf) + " lb lift";
+  /**
+   * Fetch latest weather from Open-Meteo.
+   * @returns {Promise<any>}
+   */
+  async function fetchLaunchConditions() {
+    const lat = 35.0844;
+    const lon = -106.6504;
 
-      if (daily.temperature_2m_max?.length > 1) {
-        const tomorrowMaxF = toF(daily.temperature_2m_max[1]);
-        const tomorrowMinF = toF(daily.temperature_2m_min[1]);
-        const tCode = mapWeatherCode(daily.weathercode[1]);
-        tomorrowEl.textContent = tomorrowMinF + "–" + tomorrowMaxF + "°F • " + tCode.label;
+    const url =
+      "https://api.open-meteo.com/v1/forecast" +
+      "?latitude=" + lat +
+      "&longitude=" + lon +
+      "&current_weather=true" +
+      "&hourly=relativehumidity_2m,surface_pressure,windspeed_10m,winddirection_10m" +
+      "&daily=weathercode,temperature_2m_max,temperature_2m_min" +
+      "&timezone=auto";
+
+    // Let the browser use its normal HTTP cache policy if available.
+    // (Open-Meteo may not cache long, but this avoids forced no-store.)
+    const res = await fetch(url, { cache: "default" });
+    if (!res.ok) throw new Error("Weather fetch failed");
+    return await res.json();
+  }
+
+  /**
+   * Load weather with "stale-while-revalidate":
+   * - If cached and not too old: paint immediately.
+   * - Always revalidate in background and update UI + cache.
+   */
+  async function loadLaunchConditions() {
+    const updatedLabelEl = document.getElementById("weather-updated-label");
+    const descEl = document.getElementById("weather-description");
+    const timeEl = document.getElementById("weather-time");
+    const groundWindEl = document.getElementById("ground-wind");
+    const highAltWindEl = document.getElementById("highalt-wind");
+    const humidityEl = document.getElementById("humidity");
+    const pressureEl = document.getElementById("pressure");
+    const buoyancyEl = document.getElementById("buoyancy");
+    const tomorrowEl = document.getElementById("tomorrow-forecast");
+
+    const cached = readWeatherCache();
+    const hasFreshishCache = cached && (Date.now() - cached.savedAt) < WEATHER_CACHE_TTL_MS;
+
+    if (cached?.data) {
+      try {
+        renderLaunchConditions(cached.data);
+        if (!hasFreshishCache) {
+          updatedLabelEl.textContent = "Updating…";
+        }
+      } catch {
+        // If cache is corrupted or UI changed, ignore.
       }
+    }
+
+    try {
+      const data = await fetchLaunchConditions();
+      writeWeatherCache(data);
+      renderLaunchConditions(data);
     } catch (err) {
+      // If we already rendered cache, keep it. If not, show fallback.
+      if (cached?.data) return;
+
       console.warn("Launch conditions fallback:", err);
       updatedLabelEl.textContent = "Offline fallback";
       descEl.textContent = "Mostly Sunny • Light Winds";
@@ -1071,9 +1187,41 @@
     }
   }
 
+  /**
+   * Optional: warm the browser image cache after first paint.
+   * This does NOT replace proper server Cache-Control headers,
+   * but it can make revisits/scrolls feel snappier.
+   *
+   * It runs during idle time and uses low-priority preloads.
+   */
+  function warmImageCache() {
+    const urls = Array.from(document.images)
+      .map((img) => img.currentSrc || img.src)
+      .filter(Boolean);
+
+    // Avoid duplicate work
+    const unique = Array.from(new Set(urls));
+
+    // Preload politely (do not block UI)
+    unique.forEach((src) => {
+      const i = new Image();
+      i.decoding = "async";
+      i.loading = "eager";
+      i.src = src;
+    });
+  }
+
   window.addEventListener("DOMContentLoaded", () => {
     loadLaunchConditions();
+    // Weather refresh (UI stays live; cached data makes this cheap)
     setInterval(loadLaunchConditions, 15 * 60 * 1000);
+
+    // Warm images only when the browser is idle
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(warmImageCache, { timeout: 2500 });
+    } else {
+      setTimeout(warmImageCache, 1500);
+    }
   });
 </script>
 </body>
