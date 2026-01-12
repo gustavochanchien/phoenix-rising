@@ -4,1263 +4,935 @@
   <meta charset="UTF-8" />
   <title>Phoenix Rising RC Balloon Club</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Phoenix Rising RC Balloon Club – dedicated RC ballooning team with decades of hands-on experience, two 20,000 ft³ balloons, museum-supported education programs, RC history, STEAM projects, and sponsor-ready aerial experiences." />
+  <meta
+    name="description"
+    content="Phoenix Rising RC Balloon Club – dedicated RC ballooning team with decades of hands-on experience, museum-supported education programs, RC history, STEAM projects, and sponsor-ready aerial experiences."
+  />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
 
-  <style>
-    .page {
-      font-size: 18px;
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 28px 24px 70px;
-      position: relative;
-      z-index: 1;
-    }
+<style>
+  :root {
+    --c-ink: #222222;
+    --c-muted: #6b7280;
 
-    .page small,
-    .page .text-xs,
-    .page .muted,
-    .page .helper,
-    .page .note {
-      font-size: 16px !important;
-    }
+    --c-primary: #c4543a;
+    --c-primary-soft: #f6d0bf;
+    --c-accent: #8a3b24;
+    --c-forest: #a94432;
 
-    .page * {
-      font-size: max(16px, 1rem);
-    }
+    --c-paper: #fff3dc;
+    --c-surface: #fff7e8;
+    --c-surface-soft: #fffaf0;
 
-    :root {
-      --ink-dark: #222222;
-      /* Updated to terracotta palette */
-      --ink-orange: #c4543a;
-      --ink-orange-soft: #f6d0bf;
-      --ink-mustard: #8a3b24;
-      --ink-forest: #a94432;
+    --container: 1320px;
+    --pad-x: 24px;
+    --pad-y: 28px;
+    --radius: 18px;
 
-      --ink-cream: #fff7e8;
-      --ink-paper: #fff3dc;
-      --ink-muted: #6b7280;
+    --font: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
-      --radius: 18px;
-      --transition: 0.22s ease;
-      --shadow-offset: 4px;
-    }
+    --fs-min: 16px;
+    --fs-base: 18px;
+    --lh: 1.7;
+    --lh-tight: 1.25;
+    --measure: 68ch;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    --border: 2px solid var(--c-ink);
+    --shadow-x: 4px;
+    --shadow-y: 4px;
+    --shadow-color: rgba(10,10,10,0.96);
+    --transition: 0.22s ease;
 
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--ink-paper);
-      color: var(--ink-dark);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-      overflow-x: hidden;
+    /* ✅ Used by JS for accurate smooth scrolling */
+    --nav-h: 96px;
+  }
 
-      background-image:
-        repeating-linear-gradient(
-          -45deg,
-          rgba(255,247,232,0.98) 0px,
-          rgba(255,247,232,0.98) 6px,
-          rgba(255,242,220,0.98) 6px,
-          rgba(255,242,230,0.98) 12px
-        ),
-        radial-gradient(circle at 0 0, rgba(0,0,0,0.02) 1px, transparent 0),
-        radial-gradient(circle at 100% 0, rgba(0,0,0,0.015) 1.2px, transparent 0);
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--c-ink);
+    line-height: var(--lh);
+    overflow-x: hidden;
+    font-size: clamp(var(--fs-min), 1rem + 0.25vw, var(--fs-base));
+  }
 
-      background-size:
-        auto,
-        40px 40px,
-        46px 46px;
+  body {
+    background-color: var(--c-paper);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    background-image:
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255,247,232,0.98) 0px,
+        rgba(255,247,232,0.98) 6px,
+        rgba(255,242,220,0.98) 6px,
+        rgba(255,242,230,0.98) 12px
+      ),
+      radial-gradient(circle at 0 0, rgba(0,0,0,0.02) 1px, transparent 0),
+      radial-gradient(circle at 100% 0, rgba(0,0,0,0.015) 1.2px, transparent 0);
+    background-size: auto, 40px 40px, 46px 46px;
+    background-attachment: fixed;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -40px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.16;
+    mix-blend-mode: multiply;
+    background-image:
+      radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 0),
+      radial-gradient(circle, rgba(0,0,0,0.10) 1px, transparent 0),
+      radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 0);
+    background-size: 90px 90px, 60px 60px, 40px 40px;
+    background-position: 0 0, 20px 10px, -20px -10px;
+  }
 
-      background-attachment: fixed;
-    }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; }
+  a { color: inherit; }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -40px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.16;
-      mix-blend-mode: multiply;
-      background-image:
-        radial-gradient(circle, rgba(0,0,0,0.14) 1px, transparent 0),
-        radial-gradient(circle, rgba(0,0,0,0.10) 1px, transparent 0),
-        radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 0);
-      background-size: 90px 90px, 60px 60px, 40px 40px;
-      background-position: 0 0, 20px 10px, -20px -10px;
-    }
+  small, .text-xs, .legal, .helper, .note { font-size: max(var(--fs-min), 0.95rem); }
 
-    .card {
-      position: relative;
-      background-color: var(--ink-cream);
-      border-radius: var(--radius);
-      border: 2px solid var(--ink-dark);
-      box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(10,10,10,0.96);
-      overflow: hidden;
-      padding: 18px 18px 14px;
-    }
+  .prose, .hero__lead, .join__left, .grid-2 > *:first-child { max-width: var(--measure); }
 
-    .card-soft {
-      position: relative;
-      background-color: #fffaf0;
-      border-radius: var(--radius);
-      border: 2px solid var(--ink-dark);
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.85);
-      overflow: hidden;
-    }
+  .h1, .hero__title {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: var(--lh-tight);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 12px 0;
+  }
+  .h2, .section__title {
+    font-size: clamp(18px, 1.1rem + 0.6vw, 22px);
+    line-height: 1.25;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    margin: 0;
+  }
+  .h3, .highlight__title {
+    font-size: clamp(16px, 1rem + 0.4vw, 18px);
+    line-height: 1.25;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 6px;
+  }
 
-    .card::after,
-    .card-soft::after {
-      content: "";
+  .btn { font-size: max(var(--fs-min), 0.95rem); line-height: 1; }
+  .caps { text-transform: uppercase; letter-spacing: 0.08em; }
+  .text-muted { color: var(--c-muted); }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: var(--pad-y) var(--pad-x) 70px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section { margin-top: 48px; position: relative; z-index: 1; }
+  /* ✅ Makes anchor / JS scrolling land correctly under sticky nav */
+  section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+  .section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .section__title { display: flex; align-items: center; gap: 8px; }
+  .section__title-mark {
+    width: 18px; height: 18px;
+    border-radius: 3px;
+    background-color: var(--c-primary);
+    border: var(--border);
+    flex: 0 0 auto;
+  }
+
+  .card, .card--soft {
+    position: relative;
+    border-radius: var(--radius);
+    border: var(--border);
+    overflow: hidden;
+  }
+  .card {
+    background: var(--c-surface);
+    padding: 18px 18px 14px;
+    box-shadow: var(--shadow-x) var(--shadow-y) 0 var(--shadow-color);
+  }
+  .card--soft {
+    background: var(--c-surface-soft);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.85);
+    padding: 14px 14px 14px 17px;
+  }
+  .card::after, .card--soft::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.11;
+    background-image:
+      radial-gradient(circle, rgba(0,0,0,0.18) 0.5px, transparent 0),
+      radial-gradient(circle, rgba(0,0,0,0.10) 0.6px, transparent 0);
+    background-size: 26px 26px, 18px 18px;
+  }
+
+  .btn {
+    border-radius: 999px;
+    border: var(--border);
+    cursor: pointer;
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-decoration: none;
+    user-select: none;
+    background: transparent;
+    color: var(--c-ink);
+  }
+  .btn--primary {
+    padding: 11px 20px;
+    background: var(--c-primary);
+    color: var(--c-surface);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+  }
+  .btn--ghost { padding: 10px 17px; font-weight: 600; letter-spacing: 0.08em; }
+  .btn--outline { padding: 9px 13px; font-weight: 600; letter-spacing: 0.09em; }
+  .btn:hover { transform: translate(-1px, -1px); }
+  .btn--primary:hover { box-shadow: 5px 5px 0 rgba(10,10,10,1); background-color: #f97316; }
+  .btn--ghost:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
+  .btn--outline:hover { background: var(--c-primary-soft); box-shadow: 3px 3px 0 rgba(10,10,10,0.9); }
+
+  /* NAV */
+  .navwrap {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    margin: -16px calc(-1 * var(--pad-x)) 30px;
+    padding: 10px var(--pad-x) 12px;
+    background-color: rgba(255, 247, 232, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 2px solid var(--c-ink);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav {
+    width: 100%;
+    max-width: var(--container);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .brand__logo {
+    width: 84px; height: 84px;
+    border-radius: 999px;
+    border: 2px solid var(--c-primary);
+    box-shadow: 2px 2px 0 rgba(10,10,10,0.9);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: var(--c-surface);
+    flex: 0 0 auto;
+  }
+  .brand__logo img { width: 100%; height: 100%; object-fit: contain; }
+
+  .brand__text { display: flex; flex-direction: column; min-width: 0; }
+  /* ✅ Prevents giant heading from breaking mobile nav */
+  .brand__name {
+    margin: 0;
+    font-size: clamp(18px, 2.1vw, 36px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .brand__tagline { font-size: max(var(--fs-min), 0.95rem); color: var(--c-accent); font-weight: 500; }
+
+  .nav__links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+
+  /* ✅ Mobile menu button */
+  .nav__toggle {
+    display: none;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: var(--border);
+    background: var(--c-surface);
+    box-shadow: 2px 2px 0 rgba(10,10,10,0.9);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(260px, 2.1fr);
+    gap: 32px;
+    align-items: flex-start;
+    padding: 8px 2px 30px;
+  }
+  .hero__title .accent { color: var(--c-primary); }
+  .hero__lead { font-size: max(var(--fs-min), 1rem); color: var(--c-muted); margin: 0 0 18px; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: max(var(--fs-min), 0.95rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hero__meta strong { color: var(--c-forest); }
+
+  .hero__right { display: flex; flex-direction: column; gap: 12px; }
+  .hero__gif { border-radius: 12px; }
+
+  .hero__statrow {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: max(14px, 0.85rem);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+  }
+  .hero__statrow strong { color: var(--c-primary); }
+
+  /* WEATHER */
+  .weather { padding: 14px; }
+  .weather, .weather * { font-size: max(14px, 0.85rem); }
+  .weather__temp { font-size: clamp(16px, 1rem + 0.6vw, 20px); font-weight: 700; letter-spacing: 0.06em; }
+  .weather--full { grid-column: 1 / -1; margin-top: 4px; }
+  .weather__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex-wrap: wrap;
+  }
+  .weather__updated { color: var(--c-muted); letter-spacing: 0.08em; }
+  .weather__inner { display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
+  .weather__main { display: flex; align-items: center; gap: 12px; flex: 1 1 220px; }
+
+  .iconcircle {
+    width: 96px; height: 96px;
+    border-radius: 999px;
+    border: var(--border);
+    background: #ffe8c6;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+  }
+  .iconcircle i { font-size: 70px; }
+
+  .weather__stack { display: flex; flex-direction: column; gap: 4px; }
+  .weather__cond { color: var(--c-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .weather__time { color: var(--c-muted); }
+
+  .metrics {
+    flex: 1 1 260px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .metric {
+    padding: 8px 8px 6px;
+    border-radius: 9px;
+    border: 1.5px solid var(--c-ink);
+    background: var(--c-surface-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .metric__label { display: inline-flex; align-items: center; gap: 6px; color: var(--c-muted); font-weight: 500; }
+  .metric__label i { font-size: 20px; }
+  .metric__value { font-weight: 700; }
+  .metric__subnote { margin-top: 2px; line-height: 1.4; color: var(--c-muted); text-transform: none; letter-spacing: 0; }
+
+  /* CONTENT */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: minmax(0, 2.3fr) minmax(260px, 2fr);
+    gap: 22px;
+  }
+  .prose { color: var(--c-muted); }
+  .prose p { margin: 0 0 10px; }
+  .prose ul { margin: 6px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
+  .prose li { margin-bottom: 6px; }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pill {
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: var(--border);
+    background: var(--c-surface);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    font-size: max(14px, 0.85rem);
+  }
+  .highlight ul { margin-left: 18px; list-style: square; }
+
+  /* ✅ Education should fill full width */
+  .edu { display: grid; grid-template-columns: 1fr; gap: 22px; color: var(--c-muted); max-width: 100%; }
+  .edu > div { max-width: none; }
+
+  .edu__list { margin: 8px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); }
+
+  .join {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 28px;
+    padding: 16px 16px 14px;
+  }
+  .join__left { max-width: var(--measure); }
+  .join__title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: clamp(16px, 1rem + 0.5vw, 18px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 0 0 6px;
+    line-height: 1.25;
+  }
+  .join__icon {
+    width: 22px; height: 22px;
+    border-radius: 3px;
+    background: #1877f2;
+    border: var(--border);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .join__left p { margin: 0 0 8px; font-size: max(var(--fs-min), 0.95rem); color: var(--c-muted); }
+  .join__left ul { margin: 5px 0 0 18px; list-style: square; font-size: max(var(--fs-min), 0.95rem); color: var(--c-muted); }
+  .join__actions { margin-left: auto; display: flex; flex-direction: column; gap: 10px; min-width: 240px; }
+
+  .btn--fb {
+    padding: 11px 16px;
+    background: #1877f2;
+    color: #fff;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+  }
+  .btn--fb:hover { background: #1d4ed8; box-shadow: 5px 5px 0 rgba(10,10,10,1); transform: translate(-2px, -2px); }
+
+  footer {
+    margin-top: 36px;
+    font-size: max(14px, 0.85rem);
+    color: var(--c-muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    position: relative;
+    z-index: 1;
+  }
+  footer strong { color: var(--c-primary); }
+
+  :focus-visible {
+    outline: 3px solid rgba(196, 84, 58, 0.6);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+
+  /* --- Section images --- */
+  .section-media {
+    border-radius: 14px;
+    border: var(--border);
+    background: var(--c-surface);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+    overflow: hidden;
+  }
+
+  .section-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 14px 0 0;
+  }
+
+  .media-grid .section-media {
+    box-shadow: 2px 2px 0 rgba(10,10,10,0.88);
+  }
+
+  .media-grid img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero__gif {
+    width: 100%;
+    height: auto;
+  }
+
+  .float-img {
+    float: right;
+    width: min(320px, 42%);
+    height: auto;
+    margin: 6px 0 12px 14px;
+    border-radius: 14px;
+    border: var(--border);
+    background: var(--c-surface);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
+  }
+
+  /* ✅ Education & Innovation images: make them "small" sized and aligned left */
+  .edu-media {
+    max-width: 300px;         /* same size as .section-media--small */
+    margin: 0 0 14px;         /* left aligned (no auto centering) */
+  }
+  .edu-media .section-media img {
+    aspect-ratio: 4 / 3;      /* same as small images */
+    object-fit: cover;
+  }
+  .edu-media.media-grid {
+    grid-template-columns: 1fr; /* stack within the small-width container */
+  }
+
+  .section-media--small {
+    max-width: 300px;
+    margin: 10px auto 6px;
+  }
+  .section-media--small img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* ✅ Facebook section image: align left */
+  .join__left .section-media--small {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    :root { --nav-h: 118px; }
+
+    .container { padding: 22px 18px 60px; }
+    .navwrap { margin: -16px -18px 26px; padding: 10px 18px 12px; }
+
+    .hero { grid-template-columns: 1fr; }
+    .hero__right { order: -1; }
+
+    .weather__inner { flex-direction: column; }
+    .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2, .edu { grid-template-columns: 1fr; }
+
+    .join { flex-direction: column; }
+    .join__actions { margin-left: 0; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+    .join__actions .section-media--small { width: 100%; max-width: 420px; margin: 10px 0 6px; }
+
+    /* ✅ Mobile nav collapses into menu */
+    .nav__toggle { display: inline-flex; }
+    .nav__links {
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: multiply;
-      opacity: 0.11;
-      background-image:
-        radial-gradient(circle, rgba(0,0,0,0.18) 0.5px, transparent 0),
-        radial-gradient(circle, rgba(0,0,0,0.10) 0.6px, transparent 0);
-      background-size: 26px 26px, 18px 18px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: var(--ink-cream);
-      font-size: 16px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .chip-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-    }
-
-    .nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      margin: -16px -24px 30px;
-      padding: 10px 24px 12px;
-      background-color: rgba(255, 247, 232, 0.3);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border-bottom: 2px solid var(--ink-dark);
-      border-radius: 10px 10px 0 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      display: flex;
-      justify-content: center;
-    }
-
-    .nav {
-      width: 100%;
-      max-width: 1320px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background-color: var(--ink-orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-cream);
-      font-weight: 700;
-      border: 2px solid var(--ink-dark);
-      box-shadow: 2px 2px 0 rgba(10,10,10,0.9);
-    }
-
-    .brand-text {
-      display: flex;
+      left: 18px;
+      right: 18px;
+      top: calc(100% + 10px);
+      background: rgba(255, 247, 232, 0.98);
+      border: var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 4px 4px 0 rgba(10,10,10,0.9);
+      display: none;
       flex-direction: column;
-    }
-
-    .brand-text h1 {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-dark);
-    }
-
-    .brand-text span {
-      font-size: 16px;
-      color: var(--ink-mustard);
-      font-weight: 500;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 14px;
-      font-size: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav-links a {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 2px solid transparent;
-      color: var(--ink-dark);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      transition: all var(--transition);
-    }
-
-    .nav-links a:hover {
-      border-color: var(--ink-dark);
-      background-color: var(--ink-orange-soft);
-    }
-
-    .nav-cta {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: var(--ink-orange);
-      color: var(--ink-cream);
-      font-weight: 700;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-      display: inline-flex;
-      gap: 6px;
-      align-items: center;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .nav-cta:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0 rgba(10,10,10,1);
-      background-color: #f97316;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(260px, 2.1fr);
-      gap: 32px;
-      align-items: flex-start;
-      padding: 8px 2px 30px;
-    }
-
-    .hero-title {
-      font-size: clamp(32px, 4vw, 40px);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      line-height: 1.3;
-      margin: 12px 0 12px;
-      color: var(--ink-dark);
-    }
-
-    .hero-title span {
-      color: var(--ink-orange);
-      font-size: inherit;
-      font-weight: 700;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: var(--ink-muted);
-      max-width: 620px;
-      margin-bottom: 18px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .btn-primary {
-      padding: 11px 20px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: var(--ink-orange);
-      color: var(--ink-cream);
-      font-weight: 700;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .btn-primary:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0 rgba(10,10,10,1);
-      background-color: #f97316;
-    }
-
-    .btn-ghost {
-      padding: 10px 17px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: transparent;
-      color: var(--ink-dark);
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .btn-ghost:hover {
-      background-color: var(--ink-orange-soft);
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 16px;
-      color: var(--ink-dark);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      max-width: 780px;
-    }
-
-    .hero-meta span strong {
-      color: var(--ink-forest);
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .hero-card {
-      padding: 16px 16px 12px;
-    }
-
-    .hero-gif {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-    }
-
-    .hero-stat {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 8px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--ink-dark);
-      flex-wrap: wrap;
-    }
-
-    .hero-stat strong {
-      color: var(--ink-orange);
-    }
-
-    .hero-weather-card {
-      padding: 14px 14px 14px 14px;
-    }
-
-    /* Make launch conditions smaller */
-    .hero-weather-card,
-    .hero-weather-card * {
-      font-size: 14px !important;
-    }
-
-    .hero-weather-card .weather-temp {
-      font-size: 18px !important;
-    }
-
-    /* Full-width launch conditions row */
-    .hero-weather-full {
-      grid-column: 1 / -1;
-      margin-top: 4px;
-    }
-
-    /* Compact layout – temp block + metrics side by side */
-    .hero-weather-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       align-items: stretch;
+      gap: 10px;
     }
+    .navwrap { position: sticky; }
+    .nav { position: relative; }
+    .nav__links.is-open { display: flex; }
+    .nav__links .btn { justify-content: space-between; width: 100%; }
 
-    .weather-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink-dark);
-      margin-bottom: 8px;
-    }
+    /* section images stack */
+    .media-grid { grid-template-columns: 1fr; }
+    .media-grid img { aspect-ratio: 16 / 10; }
 
-    .weather-label-left {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .weather-label-right {
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .weather-main {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      margin-bottom: 0;
-      flex: 1 1 220px;
-    }
-
-    .icon-circle {
-      width: 96px;
-      height: 96px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: #ffe8c6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .icon-circle i {
-      font-size: 70px !important;
-    }
-
-    .weather-temp-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .weather-temp {
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--ink-dark);
-    }
-
-    .weather-condition {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-    }
-
-    .weather-time {
-      color: var(--ink-muted);
-    }
-
-    .metric-grid {
-      flex: 1 1 260px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      margin-top: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--ink-dark);
-    }
-
-    .metric {
-      padding: 8px 8px 6px;
-      border-radius: 9px;
-      border: 1.5px solid var(--ink-dark);
-      background-color: #fffaf0;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .metric-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--ink-muted);
-      font-weight: 500;
-    }
-
-    .metric-label i {
-      font-size: 20px;
-    }
-
-    .metric-icon {
-      width: 7px;
-      height: 7px;
-      border-radius: 2px;
-      border: 1.5px solid var(--ink-dark);
-      background-color: var(--ink-orange-soft);
-    }
-
-    .metric-value {
-      font-weight: 700;
-      color: var(--ink-dark);
-    }
-
-    /* Small note under metric labels */
-    .metric-subnote {
+    /* ✅ Turn off float on mobile so it doesn't squeeze text */
+    .float-img {
+      float: none;
       display: block;
-      margin-top: 2px;
-      line-height: 1.4;
-      color: var(--ink-muted);
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    section {
-      margin-top: 48px; /* more space between sections */
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 20px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink-dark);
-    }
-
-    .section-title-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-      background-color: var(--ink-orange);
-      border: 2px solid var(--ink-dark);
-    }
-
-    .section-subtitle {
-      font-size: 15px;
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      width: 100%;
       max-width: 520px;
-      text-align: right;
+      margin: 0 0 14px;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(260px, 2fr);
-      gap: 22px;
-    }
+    /* ✅ Education row should still be nicely sized on mobile */
+    .edu-media { max-width: 520px; } /* keep reasonable on mobile */
+    .edu-media.media-grid { grid-template-columns: 1fr; }
+  }
 
-    .about-text {
-      font-size: 18px;
-      color: var(--ink-muted);
-    }
+  @media (max-width: 540px) {
+    :root { --nav-h: 132px; }
+    .brand__logo { width: 64px; height: 64px; }
+    .metrics { grid-template-columns: 1fr; }
+  }
 
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .pill {
-      padding: 7px 11px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: var(--ink-cream);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 500;
-      color: var(--ink-dark);
-    }
-
-    .highlight-card {
-      padding: 14px 14px 14px 17px;
-      font-size: 16px;
-      color: var(--ink-muted);
-    }
-
-    .highlight-title {
-      font-size: 17px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink-dark);
-      margin-bottom: 6px;
-    }
-
-    .highlight-card ul {
-      margin-left: 18px;
-      list-style: square;
-    }
-
-    /* Education section full-width */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 22px;
-      font-size: 16px;
-      color: var(--ink-muted);
-    }
-
-    .edu-list {
-      margin-top: 8px;
-      margin-left: 18px;
-      list-style: square;
-      font-size: 16px;
-    }
-
-    .edu-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .edu-pill {
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: #fffaf0;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      color: var(--ink-dark);
-      font-size: 14px;
-    }
-
-    .edu-card {
-      padding: 14px 14px 14px 18px;
-      font-size: 16px;
-    }
-
-    .edu-label {
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--ink-dark);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .edu-icon {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      border: 2px solid var(--ink-dark);
-      background-color: var(--ink-orange-soft);
-    }
-
-    .edu-card ul {
-      margin-left: 18px;
-      list-style: square;
-      font-size: 15px;
-      color: var(--ink-muted);
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 14px;
-      font-size: 16px;
-    }
-
-    .timeline-item {
-      padding: 12px 12px 11px;
-      border-radius: 12px;
-      border: 2px solid var(--ink-dark);
-      background-color: #fffaf0;
-      box-shadow: 2px 2px 0 rgba(10,10,10,0.85);
-      transition: all var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .timeline-year {
-      font-size: 17px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink-orange);
-      margin-bottom: 6px;
-    }
-
-    .timeline-item h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--ink-dark);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .timeline-item p {
-      color: var(--ink-muted);
-      font-size: 16px;
-    }
-
-    .timeline-item:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 4px 4px 0 rgba(10,10,10,1);
-      background-color: var(--ink-orange-soft);
-    }
-
-    .join {
-      padding: 16px 16px 14px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: flex-start;
-      margin-top: 28px;
-    }
-
-    .join-left {
-      max-width: 620px;
-    }
-
-    .join-title {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 17px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink-dark);
-      margin-bottom: 6px;
-    }
-
-    .join-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 3px;
-      background-color: #1877f2; /* keep FB brand blue */
-      border: 2px solid var(--ink-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .join-left p {
-      font-size: 16px;
-      color: var(--ink-muted);
-    }
-
-    .join-left ul {
-      margin-left: 18px;
-      margin-top: 5px;
-      list-style: square;
-      font-size: 16px;
-      color: var(--ink-muted);
-    }
-
-    .join-actions {
-      margin-left: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 240px;
-    }
-
-    .btn-fb {
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: #1877f2;
-      color: #fff;
-      font-weight: 700;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .btn-fb:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 rgba(10,10,10,1);
-      background-color: #1d4ed8;
-    }
-
-    .btn-outline {
-      padding: 9px 13px;
-      border-radius: 999px;
-      border: 2px solid var(--ink-dark);
-      background-color: transparent;
-      color: var(--ink-dark);
-      font-weight: 600;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--ink-orange-soft);
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0 rgba(10,10,10,0.9);
-    }
-
-    footer {
-      margin-top: 36px;
-      font-size: 14px;
-      color: var(--ink-muted);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      position: relative;
-      z-index: 1;
-    }
-
-    footer strong {
-      color: var(--ink-orange);
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
-      .page {
-        padding: 22px 18px 60px;
-      }
-      .nav-wrap {
-        margin: -16px -18px 26px;
-        padding: 10px 18px 12px;
-      }
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .hero-right {
-        order: -1;
-      }
-      .hero-weather-full {
-        grid-column: 1 / -1;
-      }
-      .hero-weather-inner {
-        flex-direction: column;
-      }
-      .metric-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-      .about-grid, .edu-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .timeline {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
-      .join {
-        flex-direction: column;
-      }
-      .join-actions {
-        margin-left: 0;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      .section-subtitle {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 540px) {
-      .timeline {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .metric-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-  </style>
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
 </head>
-<body>
-<div class="page">
 
-  <div class="nav-wrap">
-    <header class="nav">
-      <div class="brand">
-        <div class="brand-icon">PR</div>
-        <div class="brand-text">
-          <h1>Phoenix Rising</h1>
-          <span>RC Balloon Club</span>
+<body>
+  <div class="container">
+    <div class="navwrap" id="site-nav">
+      <header class="nav">
+        <div class="brand">
+          <div class="brand__logo">
+            <img src="images/phoenix.png" alt="Phoenix Rising logo" />
+          </div>
+          <div class="brand__text">
+            <h1 class="brand__name">Phoenix Rising</h1>
+            <span class="brand__tagline">Albuquerque RC Balloon Club</span>
+          </div>
+        </div>
+
+        <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+          <span>Menu</span>
+          <span aria-hidden="true">☰</span>
+        </button>
+
+        <nav class="nav__links" id="nav-links">
+          <button class="btn btn--primary" data-scroll="join">
+            <span>Partner With Us</span><span>↗</span>
+          </button>
+        </nav>
+      </header>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h2 class="hero__title">
+          The <span class="accent">Phoenix Rising</span><br/>
+          <span class="accent">RC Balloon Club:</span>
+        </h2>
+        <h3>Education, Innovation, and Community</h3>
+
+        <p class="hero__lead">
+          We are a dedicated R/C ballooning team with decades of experience teaching about ballooning, doing R/C hot air balloon demos, and innovating in the craft! We have two 1,200 ft³ RC-capable balloons that we use to ignite people's love for ballooning, explain the history and physics of hot air balloons, and bring joy to people's faces.
+        </p>
+
+        <div class="hero__actions">
+          <button class="btn btn--fb" data-scroll="join">
+            Join our FB group & connect
+          </button>
+          <button class="btn btn--ghost" data-scroll="education">
+            View education programs <span>↓</span>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="hero__right">
+        <div class="card">
+          <img src="images/launch.gif" alt="Phoenix Rising RC balloon launch" class="hero__gif">
+          <div class="hero__statrow">
+            <div class="hero__meta">
+              <span><strong>Decades</strong> of experience flying R/C Balloons</span>
+              <span><strong>Model Aircraft</strong> certified pilots with safety training</span>
+              <span><strong>STEAM-aligned</strong> demos & Projects</span>
+            </div>
+          </div>
         </div>
       </div>
-      <nav class="nav-links">
-        <a href="gallery.html">Photo Gallery</a>
-        <button class="nav-cta" onclick="scrollToSection('join')">
-          <span>Partner With Us</span><span>↗</span>
-        </button>
-      </nav>
-    </header>
+
+      <div class="card weather weather--full" aria-live="polite">
+        <div class="weather__label">
+          <div>Launch Conditions • Albuquerque, NM</div>
+          <div class="weather__updated" id="weather-updated-label">Loading…</div>
+        </div>
+
+        <div class="weather__inner">
+          <div class="weather__main">
+            <div class="iconcircle" aria-hidden="true">
+              <i id="weather-icon" class="ti ti-cloud"></i>
+            </div>
+
+            <div class="weather__stack">
+              <div id="weather-temp" class="weather__temp">—</div>
+              <div id="weather-description" class="weather__cond">Fetching conditions…</div>
+              <div id="weather-time" class="weather__time">—</div>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-wind"></i><span>Ground Wind</span></div>
+              <div id="ground-wind" class="metric__value">—</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-wind"></i><span>High Alt. Wind</span></div>
+              <div id="highalt-wind" class="metric__value">—</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-balloon"></i><span>Buoyancy</span></div>
+              <small class="metric__subnote">(1200ft3 envelope)</small>
+              <div id="buoyancy" class="metric__value">—</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-droplet"></i><span>Humidity</span></div>
+              <div id="humidity" class="metric__value">—</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-gauge"></i><span>Air Pressure</span></div>
+              <div id="pressure" class="metric__value">—</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric__label"><i class="ti ti-calendar"></i><span>Tomorrow</span></div>
+              <div id="tomorrow-forecast" class="metric__value">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section__header">
+        <h2 class="section__title"><span class="section__title-mark"></span>About Phoenix Rising</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="prose">
+          <p>
+            <img src="images/balloon.jpg" alt="Phoenix Rising RC balloon" loading="lazy" class="float-img" />
+            Phoenix Rising brings together people of all ages to marvel at the amazing physics and history behind ballooning in New Mexico as well as to enjoy and learn about the craft of R/C ballooning. Our team members have combied decades of experience flying for educational programs and demos at the Anderson Abruzzo Hot Air Balloon Museum and are always looking to innovate in the field. We follow proper safety protocol, and love to teach others about hot air balloons and let them experience them up close in a small and safe environment. We also love sharing our knowledge on R/C ballooning, how we weave our own R/C gondolas, build our own electronics and telemetry systems, and much more! We perform a lot of demos including:
+          </p>
+
+          <ul>
+            <li>Hands-on activities where we teach you how we prep, launch, and pack up the hot air balloon</li>
+            <li>Live demos to see burners, envelopes, baskets, and radios in action and up close</li>
+            <li>Safe operations led by trained RC balloon pilots and ground crew</li>
+          </ul>
+
+          <div class="media-grid">
+            <div class="section-media">
+              <img src="images/setup.jpg" alt="RC balloon setup and prep" loading="lazy" />
+            </div>
+            <div class="section-media">
+              <img src="images/burner.png" alt="RC balloon burner demonstration" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card--soft highlight">
+          <h3 class="highlight__title">Partner & Host With Confidence</h3>
+          <p style="margin-top:8px;" class="text-muted">
+            We have decades of experience working with R/C hot air balloons and have tons of knowledge, history, and fun facts to share!
+          </p>
+          <ul>
+            <li>Bring an authentic hot air balloon experience to your site, without the hassle of needing a whole field!</li>
+            <li>Integrate our launches into your school festivals, literacy & STEM initiatives, or other events</li>
+            <li>We are structured to support both public engagement and grant-ready, standards-aligned education work!</li>
+          </ul>
+
+          <div class="section-media" style="margin-top:12px;">
+            <img src="images/group.jpeg" alt="Phoenix Rising team and community" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="section__header">
+        <h2 class="section__title"><span class="section__title-mark"></span>Education & Innovation</h2>
+      </div>
+
+      <div class="edu">
+        <div>
+          <p>
+            To us, our R/C balloons are mobile, educational innovation platforms. We work to deliver structured experiences that blend live flight, storytelling, and hands-on STEAM lessons and interactive experiences. We love learning together and developing new systems and programs to get more people involved and in love with ballooning.
+          </p>
+
+          <ul class="edu__list">
+            <li><strong>Live Demonstrations</strong><br/>
+              We offer engaging, hands-on demonstrations that bring ballooning, physics, and atmospheric science to life. Participants can see real equipment, ask questions, and watch concepts like lift, heat, and airflow demonstrated in real time.
+            </li>
+
+            <li><strong>Science and Telemetry</strong><br/>
+              Live science demonstrations plus RC balloon flights for elementary &amp; middle school groups, tying in weather, wind, solar power, flight, and New Mexico science careers. Also advanced demonstrations for adults showing our telemetry technology, data tracking, and experimental innovations.
+            </li>
+
+            <li><strong>Tissue and Thermal Balloons</strong><br/>
+              Experience the physics of hot air balloons through tissue and thermal balloon builds. Participants learn about buoyancy, temperature, and airflow, then launch their own creations to see the science in action.
+            </li>
+
+            <li><strong>Balloon Gondola Weaving</strong><br/>
+              We weave our own gondolas using traditional techniques. This activity connects craftsmanship, engineering, and cultural history while showing how strength, weight, and design all matter in flight.
+            </li>
+
+            <li><strong>Balloon Fiesta &amp; Major Festivals</strong><br/>
+              We regularly fly at Balloon Fiesta and major festivals, demonstrating small and specialty balloons. Our balloons can safely fly in conditions where larger balloons cannot, allowing for unique educational and visual experiences.
+            </li>
+
+            <li><strong>Ballooning History Lessons</strong><br/>
+              Explore the history of ballooning, from early human flight experiments to modern scientific and recreational balloons. Lessons highlight key innovations, famous flights, and how ballooning continues to influence science and exploration today.
+            </li>
+          </ul>
+        </div>
+
+        <div class="media-grid edu-media" style="margin: 0 0 14px;">
+          <div class="section-media">
+            <img src="images/telemetry.jpeg" alt="Telemetry and flight data systems" loading="lazy" />
+          </div>
+          <div class="section-media">
+            <img src="images/weaving.jpeg" alt="Weaving a balloon gondola" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="section">
+      <div class="card join">
+        <div class="join__left">
+          <h2 class="join__title"><span class="join__icon">f</span>Connect with Phoenix Rising</h2>
+
+          <p>
+            Visit our facebook group to see upcoming RC balloon launches, basket weaving days,
+            and education program planning. We’re glad to talk through how our balloons
+            can plug into your goals.
+          </p>
+          <ul>
+            <li>Host an RC balloon demo, educational lesson, or event celebration</li>
+            <li>Reach out to us about promoting your event or advertising with our balloon</li>
+            <li>Ask about how you can help support our missions with donations</li>
+          </ul>
+          <div class="section-media section-media--small">
+            <img src="images/group.jpeg" alt="Connect with Phoenix Rising community" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="join__actions">
+          <a class="btn btn--fb" href="https://www.facebook.com/groups/phoenixrisingrc" target="_blank" rel="noopener noreferrer">
+            <span>Visit our group & message us</span>
+            <span>↗</span>
+          </a>
+
+          <button class="btn btn--outline" data-scroll="education">
+            Explore our education programs
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>&copy; <span id="year"></span> Phoenix Rising RC Balloon Club.</span>
+      <span><strong>Partner with us to expand RC balloon education in your community.</strong></span>
+    </footer>
   </div>
 
-  <section class="hero">
-    <div>
-
-      <h2 class="hero-title">
-        The <span>Phoenix Rising</span><br/>
-        <span>RC Balloon Club:</span> Education, Innovation, and Community
-      </h2>
-
-      <p>
-        We are a dedicated R/C ballooning team with decades of experience teaching about ballooning, doing R/C hot air balloon demos, and innovating in the craft! We have two 2,500 ft³ RC-capable balloons that we use to ignite people's love for ballooning, explain the history and physics of hot air balloons, and bring joy to any event.
-      </p>
-
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="scrollToSection('join')">
-          Join our FB group & connect
-        </button>
-        <button class="btn-ghost" onclick="scrollToSection('education')">
-          View education programs <span>↓</span>
-        </button>
-      </div>
-
-      <div class="hero-meta">
-        <span><strong>Decades</strong> of experience flying R/C Balloons</span>
-        <span><strong>Model Aircraft</strong> certified pilots with safety training</span>
-        <span><strong>STEAM-aligned</strong> demos & Projects</span>
-      </div>
-    </div>
-
-    <div class="hero-right">
-      <div class="card hero-card">
-        <img src="images/launch.gif" alt="Phoenix Rising RC balloon launch" class="hero-gif">
-        <div class="hero-stat">
-          <div>
-            <strong>Education</strong> Field trips, live crews, STEM & literacy tie-ins.
-          </div>
-          <div>
-            <strong>Experiences</strong> Fiesta demos, festivals & accessibility programs.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Full-width Launch Conditions Card -->
-    <div class="card hero-weather-card hero-weather-full">
-      <div class="weather-label">
-        <div class="weather-label-left">
-          <span>Launch Conditions • Albuquerque, NM</span>
-        </div>
-        <div class="weather-label-right" id="weather-updated-label">
-          Live at page load
-        </div>
-      </div>
-
-      <div class="hero-weather-inner">
-        <div class="weather-main">
-          <div class="icon-circle">
-            <i id="weather-icon" class="ti ti-sun-filled"></i>
-          </div>
-          <div class="weather-temp-block">
-            <div id="weather-temp" class="weather-temp">49°F</div>
-            <div id="weather-description" class="weather-condition">
-              Mostly Sunny • Light Winds
-            </div>
-            <div id="weather-time" class="weather-time">
-              Ideal morning RC balloon window
-            </div>
-          </div>
-        </div>
-
-        <div class="metric-grid">
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-wind"></i>
-              <span>Ground Wind</span>
-            </div>
-            <div id="ground-wind" class="metric-value">5–8 mph</div>
-          </div>
-
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-wind"></i>
-              <span>High Alt. Wind</span>
-            </div>
-            <div id="highalt-wind" class="metric-value">Manageable profiles</div>
-          </div>
-
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-balloon"></i>
-              <span>Buoyancy</span>
-            </div>
-            <small class="metric-subnote">(18ft diameter envelope - 350ft3)</small>
-            <div id="buoyancy" class="metric-value">—</div>
-          </div>
-
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-droplet"></i>
-              <span>Humidity</span>
-            </div>
-            <div id="humidity" class="metric-value">—</div>
-          </div>
-
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-gauge"></i>
-              <span>Air Pressure</span>
-            </div>
-            <div id="pressure" class="metric-value">—</div>
-          </div>
-
-          <div class="metric">
-            <div class="metric-label">
-              <i class="ti ti-calendar"></i>
-              <span>Tomorrow</span>
-            </div>
-            <div id="tomorrow-forecast" class="metric-value">—</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Full-width Launch Conditions Card -->
-
-  </section>
-
-  <section id="about">
-    <div class="section-header">
-      <div class="section-title">
-        <div class="section-title-icon"></div>
-        <span>About Phoenix Rising</span>
-      </div>
-      <div class="section-subtitle">
-        Experienced RC balloon pilots powering proven education programs.
-      </div>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          Phoenix Rising brings together people of all ages to marvel at the amazing physics and history behind ballooning in New Mexico and enjoy and learn about the craft of R/C ballooning. We fly mostly in the fall and winter months when the air is colder and provides more lift. Our team members have years of experience flying for educational programs and demos at the Anderson Abruzzo Hot Air Balloon Museum. We follow proper safety protocol, and love to teach others about hot air balloons and let them experience them up close. We also love sharing our knowledge on R/C ballooning how we weave our own R/C gondolas, our electronics and telemetry systems, and more!
-        </p>
-        <ul style="margin-left:18px; margin-top:6px; font-size:16px; color:var(--ink-muted); list-style:square;">
-          <li>Hands-on activities where volunteers can learn how to prep, launch & pack the RC balloon</li>
-          <li>Live demos to see burners, envelopes, baskets, and radios in action</li>
-          <li>Safe operations led by trained RC balloon pilots and ground crew</li>
-        </ul>
-        <div class="pill-list">
-          <div class="pill">Two 2,500 ft³ balloons</div>
-          <div class="pill">STEM tie-ins</div>
-          <div class="pill">Burner and Flight Demos</div>
-          <div class="pill">Interactive learning</div>
-        </div>
-      </div>
-
-      <div class="card-soft highlight-card">
-        <div class="highlight-title">Partner & Host With Confidence</div>
-        <ul>
-          <li>Bring an authentic hot air balloon experience to your site without full-size balloon logistics</li>
-          <li>Integrate our launches into your museum days, school festivals, literacy & STEM initiatives</li>
-          <li>Customize messaging for sponsors, foundations, and education funders</li>
-          <li>Align with proven programs already used by major ballooning institutions</li>
-        </ul>
-        <p style="margin-top:8px;">
-          Phoenix Rising is structured to support both public engagement and grant-ready, standards-aligned education work.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="section-header">
-      <div class="section-title">
-        <div class="section-title-icon"></div>
-        <span>Education & Innovation</span>
-      </div>
-      <div class="section-subtitle">
-        RC Balloon programs that plug directly into your curriculum & events.
-      </div>
-    </div>
-
-    <div class="edu-grid">
-      <div>
-        <p>
-          Our RC balloons are more than display pieces—they are mobile, repeatable education platforms.
-          We collaborate with museums, schools, nonprofits, and festivals to deliver structured experiences
-          that blend live flight, storytelling, and hands-on STEAM.
-        </p>
-        <ul class="edu-list">
-          <li><strong>Field Trips – “We Are a Balloon Crew”</strong><br/>
-            Students act as the ground crew, learn each part of the balloon,
-            assist with inflation, launch, and pack-up, and experience burners and controls up close.
-          </li>
-          <li><strong>Science in the Sky</strong><br/>
-            Live science demonstrations plus RC balloon flights for elementary & middle school groups,
-            tying in weather, wind, solar power, flight, astronomy, and New Mexico science careers.
-          </li>
-          <li><strong>Montgolfier Days</strong><br/>
-            Celebrations of the first hot air balloon flights where fifth graders launch their own tissue balloons,
-            supported by RC balloon demos and teacher training.
-          </li>
-          <li><strong>Ballooning for All – Accessibility Programs</strong><br/>
-            Inclusive balloon rallies designed for participants with special needs, where RC balloons
-            extend the experience when full-size balloons can’t fly.
-          </li>
-          <li><strong>Balloon Fiesta & Major Festivals</strong><br/>
-            Daily RC balloon demonstrations for international visitors, offering an up-close balloon experience
-            even outside ideal flight windows.
-          </li>
-          <li><strong>Stories in the Sky</strong><br/>
-            Early childhood literacy and cultural programs enhanced with periodic RC balloon flights
-            that connect books, art, and science.
-          </li>
-        </ul>
-
-        <div class="edu-pills">
-          <div class="edu-pill">Live Crew Activities</div>
-          <div class="edu-pill">Science in the Sky</div>
-          <div class="edu-pill">Montgolfier Days</div>
-          <div class="edu-pill">Ballooning for All</div>
-          <div class="edu-pill">Fiesta Demos</div>
-          <div class="edu-pill">Stories in the Sky</div>
-        </div>
-      </div>
-
-      <!--
-      <div class="card-soft edu-card">
-        <div class="edu-label">
-          <div class="edu-icon"></div>
-          <span>STEAM & Maker Integration</span>
-        </div>
-        <ul>
-          <li>Realtime telemetry: GPS, altitude & temperature feeds for classroom dashboards</li>
-          <li>Microcontroller payload labs using Arduino-class hardware for sensors & controls</li>
-          <li>3D-printed and CNC-cut components for baskets, mounts, and fixtures</li>
-          <li>Textile and weaving activities tied to envelopes, lines, and heat protection</li>
-          <li>Teacher and facilitator support materials aligned with existing museum programs</li>
-        </ul>
-        <p style="margin-top:7px;">
-          Whether you are planning a single demo or a full-season education program,
-          Phoenix Rising can align RC balloon missions with your learning goals, standards,
-          and sponsor requirements.
-        </p>
-      </div>
-      -->
-    </div>
-  </section>
-
-  <!--
-  <section id="timeline">
-    ...
-  </section>
-  -->
-
-  <section id="join">
-    <div class="card join">
-      <div class="join-left">
-        <div class="join-title">
-          <div class="join-icon">f</div>
-          <span>Connect with Phoenix Rising</span>
-        </div>
-        <p>
-          Use our online group as your hub for RC balloon launches, build nights,
-          and education program planning. We’re glad to talk through how our balloons
-          can plug into your goals.
-        </p>
-        <ul>
-          <li>Host an RC balloon field trip, Science in the Sky-style event, or Montgolfier celebration</li>
-          <li>Design accessibility-forward experiences modeled on Ballooning for All</li>
-          <li>Feature your brand or foundation within sponsor-ready education programs</li>
-          <li>Integrate RC balloon flights into museum, library, school, or festival programming</li>
-        </ul>
-      </div>
-
-      <div class="join-actions">
-        <a class="btn-fb" href="#" target="_blank" rel="noopener">
-          <span>Visit our group & message us</span>
-          <span>↗</span>
-        </a>
-        <button class="btn-outline" onclick="scrollToSection('education')">
-          Explore our education programs
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span>&copy; <span id="year"></span> Phoenix Rising RC Balloon Club.</span>
-    <span><strong>Partner with us to expand RC balloon education in your community.</strong></span>
-  </footer>
-
-</div>
-
 <script>
+  function getNavOffset() {
+    const nav = document.getElementById("site-nav");
+    if (!nav) return 0;
+    return nav.getBoundingClientRect().height + 14;
+  }
+
   function scrollToSection(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    window.scrollTo({
-      top: el.offsetTop - 90,
-      behavior: "smooth"
-    });
+
+    const y = window.scrollY + el.getBoundingClientRect().top - getNavOffset();
+    window.scrollTo({ top: y, behavior: "smooth" });
   }
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-scroll]");
+    if (!btn) return;
+
+    const id = btn.getAttribute("data-scroll");
+    scrollToSection(id);
+
+    const links = document.getElementById("nav-links");
+    const toggle = document.getElementById("nav-toggle");
+    if (links?.classList.contains("is-open")) {
+      links.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  (function initNav() {
+    const toggle = document.getElementById("nav-toggle");
+    const links = document.getElementById("nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", () => {
+      const open = links.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!links.classList.contains("is-open")) return;
+      if (e.target.closest("#nav-links") || e.target.closest("#nav-toggle")) return;
+      links.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (!links.classList.contains("is-open")) return;
+      links.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.focus();
+    });
+  })();
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Live Launch Conditions for Albuquerque, NM
   async function loadLaunchConditions() {
     const lat = 35.0844;
     const lon = -106.6504;
@@ -1278,19 +950,16 @@
     const pressureEl = document.getElementById("pressure");
     const tomorrowEl = document.getElementById("tomorrow-forecast");
 
-    // Config
     const BALLOON_VOL_FT3 = 3500;
-    const DELTA_T_F = 100; // assumed internal air is ~100°F warmer than ambient
-    const R_AIR = 287.05; // J/(kg·K)
+    const DELTA_T_F = 100;
+    const R_AIR = 287.05;
 
-    // Helpers
     const toMph = (kmh) => Math.round(kmh * 0.621371);
     const toF = (c) => Math.round((c * 9) / 5 + 32);
     const toK = (c) => c + 273.15;
     const hPaToPa = (hPa) => hPa * 100;
 
     function degToCompassWord(deg) {
-      // 16-point compass to words
       const sectors = [
         "North","N-NE","NE","E-NE",
         "East","E-SE","SE","S-SE",
@@ -1323,7 +992,7 @@
         "&daily=weathercode,temperature_2m_max,temperature_2m_min" +
         "&timezone=auto";
 
-      const res = await fetch(url);
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("Weather fetch failed");
       const data = await res.json();
 
@@ -1335,108 +1004,68 @@
       const currentCode = mapWeatherCode(current.weathercode);
       const now = new Date(current.time);
 
-      if (tempEl) tempEl.textContent = currentTempF + "°F";
-      if (descEl) descEl.textContent = currentCode.label + " • Light winds";
-      if (timeEl) {
-        timeEl.textContent = "Live " + now.toLocaleTimeString([], {
-          hour: "numeric",
-          minute: "2-digit"
-        });
-      }
-      if (iconEl) iconEl.className = "ti " + currentCode.icon;
-      if (updatedLabelEl) {
-        updatedLabelEl.textContent =
-          "Updated " + now.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "2-digit"
-          });
-      }
+      tempEl.textContent = currentTempF + "°F";
+      descEl.textContent = currentCode.label + " • Light winds";
+      timeEl.textContent = "Live " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      iconEl.className = "ti " + currentCode.icon;
+      updatedLabelEl.textContent = "Updated " + now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
       const idx = hourly.time.indexOf(current.time);
       const ix = idx !== -1 ? idx : 0;
 
-      // Ground wind (10m) with full direction words
-      if (groundWindEl && hourly.windspeed_10m && hourly.winddirection_10m) {
-        const gwSpeed = toMph(hourly.windspeed_10m[ix]);
-        const gwDirWord = degToCompassWord(hourly.winddirection_10m[ix]);
-        groundWindEl.textContent = gwDirWord + " " + gwSpeed + " mph";
-      }
+      const gwSpeed = toMph(hourly.windspeed_10m[ix]);
+      const gwDirWord = degToCompassWord(hourly.winddirection_10m[ix]);
+      groundWindEl.textContent = gwDirWord + " " + gwSpeed + " mph";
 
-      // High alt wind (proxy a few hours ahead) with full direction words
-      if (highAltWindEl && hourly.windspeed_10m && hourly.winddirection_10m) {
-        const haIndex = Math.min(ix + 3, hourly.windspeed_10m.length - 1);
-        const haSpeed = toMph(hourly.windspeed_10m[haIndex]);
-        const haDirWord = degToCompassWord(hourly.winddirection_10m[haIndex]);
-        highAltWindEl.textContent = haDirWord + " " + haSpeed + " mph aloft";
-      }
+      const haIndex = Math.min(ix + 3, hourly.windspeed_10m.length - 1);
+      const haSpeed = toMph(hourly.windspeed_10m[haIndex]);
+      const haDirWord = degToCompassWord(hourly.winddirection_10m[haIndex]);
+      highAltWindEl.textContent = haDirWord + " " + haSpeed + " mph aloft";
 
-      // Humidity
-      if (humidityEl && hourly.relativehumidity_2m) {
-        const rh = Math.round(hourly.relativehumidity_2m[ix]);
-        humidityEl.textContent = rh + "%";
-      }
+      humidityEl.textContent = Math.round(hourly.relativehumidity_2m[ix]) + "%";
 
-      // Air pressure (inHg)
-      let inHgDisplay = null;
-      if (pressureEl && hourly.surface_pressure) {
-        const hPa = hourly.surface_pressure[ix];
-        const inHg = hPa * 0.02953;
-        inHgDisplay = inHg.toFixed(2);
-        pressureEl.textContent = inHgDisplay + " inHg";
-      }
+      const hPa = hourly.surface_pressure[ix];
+      const inHg = (hPa * 0.02953).toFixed(2);
+      pressureEl.textContent = inHg + " inHg";
 
-      // Buoyancy estimate for 3,500 ft³ hot-air balloon
-      // Assumes internal air is ~100°F warmer than ambient at same pressure.
-      if (buoyancyEl) {
-        const T_out_C = current.temperature;
-        const T_out_K = toK(T_out_C);
-        const T_in_K = T_out_K + (DELTA_T_F - 32) * (5/9); // convert 100°F to K increment
-        const p_hPa = hourly.surface_pressure ? hourly.surface_pressure[ix] : 1013.25;
-        const p_Pa = hPaToPa(p_hPa);
+      const T_out_K = toK(current.temperature);
+      const T_in_K = T_out_K + (DELTA_T_F - 32) * (5 / 9);
+      const p_Pa = hPaToPa(hPa);
 
-        const rho_out = p_Pa / (R_AIR * T_out_K);
-        const rho_in  = p_Pa / (R_AIR * T_in_K);
-        const deltaRho = Math.max(rho_out - rho_in, 0); // kg/m³
+      const rho_out = p_Pa / (R_AIR * T_out_K);
+      const rho_in  = p_Pa / (R_AIR * T_in_K);
+      const deltaRho = Math.max(rho_out - rho_in, 0);
 
-        const V_m3 = BALLOON_VOL_FT3 * 0.028316846592; // ft³ -> m³
-        const lift_kg = deltaRho * V_m3;               // kg of lift (mass equivalent)
-        const lift_lbf = lift_kg * 9.80665 / 4.448221615;
+      const V_m3 = BALLOON_VOL_FT3 * 0.028316846592;
+      const lift_kg = deltaRho * V_m3;
+      const lift_lbf = lift_kg * 9.80665 / 4.448221615;
 
-        buoyancyEl.textContent = "~ " + Math.round(lift_lbf) + " lb lift";
-      }
+      buoyancyEl.textContent = "~ " + Math.round(lift_lbf) + " lb lift";
 
-      // Tomorrow forecast (min/max + condition)
-      if (
-        tomorrowEl &&
-        daily.temperature_2m_max &&
-        daily.temperature_2m_min &&
-        daily.weathercode &&
-        daily.temperature_2m_max.length > 1 &&
-        daily.temperature_2m_min.length > 1 &&
-        daily.weathercode.length > 1
-      ) {
+      if (daily.temperature_2m_max?.length > 1) {
         const tomorrowMaxF = toF(daily.temperature_2m_max[1]);
         const tomorrowMinF = toF(daily.temperature_2m_min[1]);
         const tCode = mapWeatherCode(daily.weathercode[1]);
-        tomorrowEl.textContent =
-          tomorrowMinF + "–" + tomorrowMaxF + "°F • " + tCode.label;
+        tomorrowEl.textContent = tomorrowMinF + "–" + tomorrowMaxF + "°F • " + tCode.label;
       }
-
     } catch (err) {
       console.warn("Launch conditions fallback:", err);
-
-      if (descEl) descEl.textContent = "Mostly Sunny • Light Winds";
-      if (timeEl) timeEl.textContent = "Ideal morning RC balloon window";
-      if (groundWindEl) groundWindEl.textContent = "Light southerly 5–8 mph";
-      if (highAltWindEl) highAltWindEl.textContent = "Southerly 15–20 mph aloft";
-      if (humidityEl) humidityEl.textContent = "22%";
-      if (pressureEl) pressureEl.textContent = "30.10 inHg";
-      if (buoyancyEl) buoyancyEl.textContent = "~ 180 lb lift (ΔT +100°F)";
-      if (tomorrowEl) tomorrowEl.textContent = "52°F • Mostly Sunny";
+      updatedLabelEl.textContent = "Offline fallback";
+      descEl.textContent = "Mostly Sunny • Light Winds";
+      timeEl.textContent = "Ideal morning RC balloon window";
+      groundWindEl.textContent = "Light southerly 5–8 mph";
+      highAltWindEl.textContent = "Southerly 15–20 mph aloft";
+      humidityEl.textContent = "22%";
+      pressureEl.textContent = "30.10 inHg";
+      buoyancyEl.textContent = "~ 180 lb lift (ΔT +100°F)";
+      tomorrowEl.textContent = "52°F • Mostly Sunny";
     }
   }
 
-  window.addEventListener("DOMContentLoaded", loadLaunchConditions);
+  window.addEventListener("DOMContentLoaded", () => {
+    loadLaunchConditions();
+    setInterval(loadLaunchConditions, 15 * 60 * 1000);
+  });
 </script>
 </body>
 </html>
