@@ -761,8 +761,10 @@
           <div class="hero__statrow">
             <div class="hero__meta">
               <span><strong>Decades</strong> of experience flying R/C Balloons</span>
-              <span><strong>Model Aircraft</strong> certified pilots with safety training</span>
+              <span><strong>Model Aircraft</strong> pilots with hands-on R/C Controls and safety training</span>
               <span><strong>STEAM-aligned</strong> demos & Projects</span>
+              <span><strong>Balloon Fiesta & Major Festivals</strong> We regularly fly at Balloon Fiesta and major festivals, demonstrating small and specialty balloons. Our balloons can safely fly in conditions where larger balloons cannot, allowing for unique educational and visual experiences.</span>
+ 
             </div>
           </div>
         </div>
@@ -907,7 +909,7 @@
             </li>
 
             <li><strong>Balloon Fiesta &amp; Major Festivals</strong><br/>
-              We regularly fly at Balloon Fiesta and major festivals, demonstrating small and specialty balloons. Our balloons can safely fly in conditions where larger balloons cannot, allowing for unique educational and visual experiences.
+              For the past few years we have flown our RC balloons at the Balloon Museum, demonstrating small and specialty balloons. Our balloons can safely fly in conditions where larger balloons cannot, allowing for unique educational and visual experiences.
             </li>
 
             <li><strong>Ballooning History Lessons</strong><br/>
@@ -943,7 +945,7 @@
           <ul>
             <li>Host an RC balloon demo, educational lesson, or event celebration</li>
             <li>Reach out to us about promoting your event or advertising with our balloon</li>
-            <li>Ask about how you can help support our missions with donations</li>
+            <li>Ask about how you can help support our missions or join the club!</li>
           </ul>
         </div>
 
@@ -1231,6 +1233,7 @@
   // close with X, outside click, or Escape
   // =========================
   (function initUnderConstructionModal() {
+    const ENABLE_UC_MODAL = false; // UNDER CONTSTRUCTION SWITCH
     const modalBackdrop = document.getElementById("uc-modal");
     const closeBtn = document.getElementById("uc-close");
     const okBtn = document.getElementById("uc-ok");
@@ -1250,7 +1253,7 @@
 
     // Show on load
     window.addEventListener("DOMContentLoaded", () => {
-      openModal();
+      if (ENABLE_UC_MODAL) openModal();
     });
 
     closeBtn.addEventListener("click", closeModal);
