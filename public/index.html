@@ -573,10 +573,120 @@
     .btn { transition: none; }
     .btn:hover { transform: none; }
   }
+
+  /* ==============================
+     Under Construction Modal Styles
+     ============================== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.55);
+    display: none;              /* hidden by default */
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 9999;
+  }
+
+  .modal-backdrop.is-open {
+    display: flex;
+  }
+
+  .modal {
+    width: min(560px, 100%);
+    background: var(--c-surface);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: 6px 6px 0 rgba(10,10,10,0.95);
+    position: relative;
+    padding: 18px 18px 16px;
+    overflow: hidden;
+  }
+
+  .modal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.11;
+    background-image:
+      radial-gradient(circle, rgba(0,0,0,0.18) 0.5px, transparent 0),
+      radial-gradient(circle, rgba(0,0,0,0.10) 0.6px, transparent 0);
+    background-size: 26px 26px, 18px 18px;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: var(--border);
+    background: var(--c-surface-soft);
+    box-shadow: 2px 2px 0 rgba(10,10,10,0.9);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    line-height: 1;
+    z-index: 1;
+    transition: all var(--transition);
+  }
+
+  .modal__close:hover {
+    transform: translate(-1px, -1px);
+    background: var(--c-primary-soft);
+    box-shadow: 3px 3px 0 rgba(10,10,10,0.95);
+  }
+
+  .modal__title {
+    margin: 0 44px 8px 0;
+    font-size: clamp(18px, 1.1rem + 0.4vw, 22px);
+    line-height: 1.25;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+  }
+
+  .modal__text {
+    margin: 0 0 14px;
+    color: var(--c-muted);
+    max-width: 60ch;
+  }
+
+  .modal__actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 </style>
 </head>
 
 <body>
+  <!-- =========================
+       Under Construction Modal
+       (close with X or outside click)
+       ========================= -->
+  <div class="modal-backdrop" id="uc-modal" role="dialog" aria-modal="true" aria-labelledby="uc-title">
+    <div class="modal" role="document">
+      <button class="modal__close" id="uc-close" type="button" aria-label="Close dialog">✕</button>
+
+      <h2 class="modal__title" id="uc-title">Under Construction</h2>
+      <p class="modal__text">
+        This site is under construction. We are adding some new corrections and changes! Thank you
+      </p>
+
+      <div class="modal__actions">
+        <button class="btn btn--primary" id="uc-ok" type="button">
+          Okay, let me in <span>↗</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="navwrap" id="site-nav">
       <header class="nav">
@@ -1115,6 +1225,49 @@
       i.src = src;
     });
   }
+
+  // =========================
+  // Under Construction Modal
+  // close with X, outside click, or Escape
+  // =========================
+  (function initUnderConstructionModal() {
+    const modalBackdrop = document.getElementById("uc-modal");
+    const closeBtn = document.getElementById("uc-close");
+    const okBtn = document.getElementById("uc-ok");
+
+    if (!modalBackdrop || !closeBtn || !okBtn) return;
+
+    function openModal() {
+      modalBackdrop.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      okBtn.focus();
+    }
+
+    function closeModal() {
+      modalBackdrop.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+
+    // Show on load
+    window.addEventListener("DOMContentLoaded", () => {
+      openModal();
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    okBtn.addEventListener("click", closeModal);
+
+    // Close by clicking outside the modal (backdrop)
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalBackdrop.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+  })();
 
   window.addEventListener("DOMContentLoaded", () => {
     loadLaunchConditions();
