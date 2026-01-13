@@ -229,8 +229,8 @@
     background-color: rgba(255, 247, 232, 0.88);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    border-bottom: 2px solid var(--c-ink);
-    border-radius: 10px 10px 0 0;
+    border: 2px solid var(--c-ink);
+    border-radius: 12px; /* or 10px if you want it tighter */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: center;
@@ -399,11 +399,12 @@
   }
 
   .media-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin: 14px 0 0;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+  margin: 14px 0 0;
+}
+
   .media-grid .section-media { box-shadow: 2px 2px 0 rgba(10,10,10,0.88); }
   .media-grid img { aspect-ratio: 4 / 3; }
 
@@ -763,7 +764,6 @@
               <span><strong>Decades</strong> of experience flying R/C Balloons</span>
               <span><strong>Model Aircraft</strong> pilots with hands-on R/C Controls and safety training</span>
               <span><strong>STEAM-aligned</strong> demos & Projects</span>
-              <span><strong>Balloon Fiesta & Major Festivals</strong> We regularly fly at Balloon Fiesta and major festivals, demonstrating small and specialty balloons. Our balloons can safely fly in conditions where larger balloons cannot, allowing for unique educational and visual experiences.</span>
  
             </div>
           </div>
